@@ -1,0 +1,12 @@
+[build]
+  # Command that Netlify will run to build your site
+  command = "npm run build-css"
+  
+  # The directory that contains the built output (static files)
+  publish = "public"  # Replace with your build directory (e.g., public, build, dist)
+
+[[redirects]]
+  from = "/index.html"
+  to = "/index.html"
+  status = 200
+  force = true
