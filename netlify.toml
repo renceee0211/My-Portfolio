@@ -6,7 +6,7 @@
   publish = "public"  # Replace with your build directory (e.g., public, build, dist)
 
 [[redirects]]
-  from = "/index.html"
-  to = "/index.html"
+  from = "public/index.html"
+  to = "public/index.html"
   status = 200
   force = true
