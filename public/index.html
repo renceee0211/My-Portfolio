@@ -17,11 +17,11 @@
     <script  type="module" src="script.js"></script>
 </head>
 
-<body class="font-family:sans bg-darkMode backdrop-blur-lg select-none overflow-hidden">
+<body class="font-family:sans overflow-y-scroll bg-darkMode backdrop-blur-lg select-none">
     
 
         <!-- Navigation Bar -->
-    <nav id="navbar" class="bg-transparent sticky top-0 w-full z-50 transition-all duration-100 mx-auto p-6">
+    <nav id="navbar" class="md:sticky bg-transparent top-0 w-full z-50 transition-all duration-100 mx-auto p-6 ">
         <div class="flex items-center justify-center">
             <div class="hidden md:flex space-x-14">
                 <div id="topnav">
@@ -42,7 +42,7 @@
 
     <section id="section-1">
         <!-- Hero Section -->
-        <div class="relative mx-auto bg-bg1 mb-5 bg-bottom bg-cover backdrop-blur-lg md:p-2">
+        <div class="relative mx-auto md:bg-bottom md:bg-cover md:p-2 md:mb-5 md:bg-bg1">
             <div class="m-10 md:m-30 md:mb-50 lg:m-60">
                 <h1 id="rence" class="text-4xl text-white font-black text-center md:text-5xl lg:text-7xl">Clarence Velasco</h1>
                 <p id="subtitle" class="mt-2 text-white text-center mx-w-auto md:text-2xl">Multimedia Artist - Web Developer</p>
@@ -52,12 +52,12 @@
 
     <section id="section-2">
         <!-- About Container -->
-        <div class="relative container grid mx-auto px-16 pt-8 mt-36 grid-cols-1 md:grid-cols-2">
+        <div class="relative container grid mx-auto px-10 pt-8 mt-36 grid-cols-1 md:px-16 md:grid-cols-2 ">
             <!-- Image -->
-             <div class="place-items-center">
+             <div class="flex items-center justify-center pb-6 md:pb-0 md:grid-rows-">
                 <img id="rencePic" src="assets/v2-clarence.jpg" alt="Clarence Velasco" class="rounded-full outline outline-1 outline-accentColor outline-offset-4 w-40 md:w-72 md">
             </div>
-            <div id="aboutContainer" class="content-center sm:items-center">
+            <div id="aboutContainer" class="content-center md:items-center">
                 <!-- About Text -->
                 <div class="flex items-center mb-4">
                     <h1 class="text-white font-bold text-2xl">ABOUT</h1>
@@ -67,16 +67,49 @@
                     cultivated since Senior High School.<br><br>Beyond programming, I thrive in the field of multimedia, specializing in Graphic Design, Photography, Video Editing, and 3D Modeling. 
                     I combine technical expertise with artistic creativity to craft solutions that are both visually captivating and highly functional, seamlessly integrating design and technology.
                 </p>
+
+                <div class="grid grid-cols-5 mt-8 justify-items-center">
+                            <!-- Icon 1 -->
+                        <div class="flex items-center justify-center w-16 h-16 ">
+                            <a href="https://www.facebook.com/rvdigiarts" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-facebook-f text-3xl text-white"></i>
+                            </a>
+                        </div>
+                        <!-- Icon 2 -->
+                        <div class="flex items-center justify-center w-16 h-16">
+                            <a href="https://www.instagram.com/rvdigiarts" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-instagram text-3xl text-white"></i>
+                            </a>
+                        </div>
+                        <!-- Icon 3 -->
+                        <div class="flex items-center justify-center w-16 h-16">
+                            <a href="https://t.me/Renceee_v" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-brands fa-telegram text-3xl text-white"></i>
+                            </a>
+                        </div>
+                        <!-- Icon 4 -->
+                        <div class="flex items-center justify-center w-16 h-16 ">
+                            <a href="mailto:clarencevel@gmail.com">
+                                <i class="fa-regular fa-envelope text-3xl text-white"></i>
+                            </a>
+                        </div>
+                        <!-- Icon 5 -->
+                        <div class="flex items-center justify-center w-16 h-16">
+                            <a href="https://www.linktr.ee/rvdigiarts" target="_blank" rel="noopener noreferrer">
+                                <i class="fa-solid fa-arrow-up-right-from-square text-2xl text-white"></i>
+                            </a>
+                        </div>
+                </div>
             </div>
         </div>
     </section>
     
     <!-- Projects Section -->
     <section id="section-3">
-        <div  class="relative container grid gap-8 mx-auto mt-60 p-4 pt-4 grid-cols-1 md:grid-cols-3">
+        <div  class="relative container grid gap-8 mx-auto mt-60 p-4 grid-cols-1 md:grid-cols-3 md:gap-8 md:p-4 md:pt-4">
 
             <!--Header-->
-            <div id="projects" class="col-span-1 bg-lighterBlack rounded-lg mb-10 p-10 md:col-span-3">
+            <div id="projects" class="col-span-1 rounded-lg p-4 md:p-10 md:col-span-3 md:bg-darkmode2 md:mb-10">
                 <h1  class="text-4xl text-white font-black text-center md:text-5xl lg:text-6xl">Recent Projects</h1>
             </div>
 
@@ -162,14 +195,14 @@
 
     <!-- Contact Me -->
     <section id="section-4">
-        <div class="container grid grid-cols-5 gap-4 mx-auto mt-60 mb-16 p-36 bg-darkmode2 rounded-t-xl">
+        <div class="relative container grid grid-cols-5 gap-4 mx-auto mt-60 mb-16 p-36 bg-darkmode2 rounded-t-xl">
             <!-- Header -->
-            <div class="col-span-5">
+            <div class="flex justify-center col-span-5">
                 <h2 class="text-4xl text-white font-bold text-center">Contact</h1>
             </div>
 
             <!-- Icons -->
-            <div class="flex justify-center gap-4 col-span-5">
+            <div class="flex justify-center gap-10 col-span-5 md:gap-4">
                 <!-- Icon 1 -->
                 <div class="flex items-center justify-center w-24 h-24">
                     <a href="https://www.facebook.com/rvdigiarts" target="_blank" rel="noopener noreferrer">

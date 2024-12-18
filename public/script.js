@@ -25,16 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       stagger: 0.3 
     });
   
-    // Navbar Scroll Animation
-    gsap.to('#navbar', {
-      scrollTrigger: {
-        trigger: '#navbar',
-        start: 'top 0',
-        end: 'top -30%',
-        scrub: true,
-      },
-      backgroundColor: '#282828', // Navbar background color change
-    });
+    
   
     // Rence Picture Scroll Animation
     gsap.timeline({
@@ -61,79 +52,115 @@ document.addEventListener("DOMContentLoaded", () => {
       y: 200 
     });
   
-    // Projects Section Scroll Animation
-    gsap.from("#projects", { 
-      scrollTrigger: { 
-        trigger: "#projects", 
-        start: "-500% 25%", 
-        end: "400% 75%", 
-        scrub: true, 
-      },
-      stagger: {
-        from: "start",
-        amount: 0.5    // Total time for stagger distribution
-        }, 
-      ease: 'power2.inOut',
-      opacity: 0, 
-      y: 250 
-    });
+    // Projects Section Scroll Animation for larger screens
+    ScrollTrigger.matchMedia({
+        // Default for larger screens
+        "(min-width: 768px)": function () {
+            gsap.from("#projects", { 
+            scrollTrigger: { 
+                trigger: "#projects", 
+                start: "-500% 25%", 
+                end: "400% 75%", 
+                scrub: true, 
+            },
+            stagger: {
+            from: "start",
+            amount: 0.5    // Total time for stagger distribution
+            }, 
+            ease: 'power2.inOut',
+            opacity: 0, 
+            y: 250 
+            });
 
-
-    const menuItems = document.querySelectorAll("#menu-item");
-    const sections = document.querySelectorAll("section");
-
-    // Loop through sections and create ScrollTriggers
-    sections.forEach((section, idx) => {
-      const targetMenuItem = menuItems[idx];
-  
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top 50%", // When the section hits the middle of the viewport
-        end: "bottom 50%", // When the section leaves the middle of the viewport
-        offsetY: 100,
-        onEnter: () => {
-            menuItems.forEach(item => {
-                item.classList.remove("text-white"); // Remove the text color from all items
-                item.classList.add("text-white"); // Set all items to inactive color
+            // Navbar Scroll Animation
+              gsap.to('#navbar', {
+                scrollTrigger: {
+                  trigger: '#navbar',
+                  start: 'top 0',
+                  end: 'top -30%',
+                  scrub: true,
+                },
+                backgroundColor: '#282828', // Navbar background color change
               });
-              targetMenuItem.classList.remove("text-white"); // Remove inactive color
-              targetMenuItem.classList.add("text-accentColor"); // Set the active item to blue
-            },
-            onLeave: () => {
-              targetMenuItem.classList.remove("text-accentColor"); // Remove active color
-              targetMenuItem.classList.add("text-white"); // Set back to inactive color
-            },
-            onEnterBack: () => {
-              menuItems.forEach(item => {
-                item.classList.remove("text-white"); // Remove the text color from all items
-                item.classList.add("text-white"); // Set all items to inactive color
-              });
-              targetMenuItem.classList.remove("text-white"); // Remove inactive color
-              targetMenuItem.classList.add("text-accentColor"); // Set the active item to blue
-            },
-            onLeaveBack: () => {
-              targetMenuItem.classList.remove("text-accentColor"); // Remove active color
-              targetMenuItem.classList.add("text-white"); // Set back to inactive color
-            },
-      });
-    });
 
-    // Scroll on navbar click
-    menuItems.forEach((menuItem, idx) => {
-        menuItem.addEventListener("click", (event) => {
-          event.preventDefault(); // Prevent the default anchor behavior if using <a> tags
-      
-          gsap.to(window, {
-            duration: 1,
-            scrollTo: {
-              y: "#section-" + (idx + 1), // Dynamically target the section
-              offsetY: 100,
-              autoKill: true // Stops scrolling if the user interacts mid-scroll
-            },
-            ease: "power2.inOut"
-          });
-        });
-      });
+            const menuItems = document.querySelectorAll("#menu-item");
+            const sections = document.querySelectorAll("section");
+
+            // Loop through sections and create ScrollTriggers
+            sections.forEach((section, idx) => {
+              const targetMenuItem = menuItems[idx];
+          
+              ScrollTrigger.create({
+                trigger: section,
+                start: "top 50%", // When the section hits the middle of the viewport
+                end: "bottom 50%", // When the section leaves the middle of the viewport
+                onEnter: () => {
+                    menuItems.forEach(item => {
+                        item.classList.remove("text-white"); // Remove the text color from all items
+                        item.classList.add("text-white"); // Set all items to inactive color
+                      });
+                      targetMenuItem.classList.remove("text-white"); // Remove inactive color
+                      targetMenuItem.classList.add("text-accentColor"); // Set the active item to blue
+                    },
+                    onLeave: () => {
+                      targetMenuItem.classList.remove("text-accentColor"); // Remove active color
+                      targetMenuItem.classList.add("text-white"); // Set back to inactive color
+                    },
+                    onEnterBack: () => {
+                      menuItems.forEach(item => {
+                        item.classList.remove("text-white"); // Remove the text color from all items
+                        item.classList.add("text-white"); // Set all items to inactive color
+                      });
+                      targetMenuItem.classList.remove("text-white"); // Remove inactive color
+                      targetMenuItem.classList.add("text-accentColor"); // Set the active item to blue
+                    },
+                    onLeaveBack: () => {
+                      targetMenuItem.classList.remove("text-accentColor"); // Remove active color
+                      targetMenuItem.classList.add("text-white"); // Set back to inactive color
+                    },
+              });
+            });
+
+            // Scroll on navbar click
+            menuItems.forEach((menuItem, idx) => {
+                menuItem.addEventListener("click", (event) => {
+                  event.preventDefault(); // Prevent the default anchor behavior if using <a> tags
+              
+                  gsap.to(window, {
+                    duration: 1,
+                    scrollTo: {
+                      y: "#section-" + (idx + 1), // Dynamically target the section
+                      offsetY: 100,
+                      autoKill: true // Stops scrolling if the user interacts mid-scroll
+                    },
+                    ease: "power2.inOut"
+                  });
+                });
+            });
+
+        },
+    
+
+        "(max-width: 767px)": function () {
+            gsap.from("#projects", { 
+                scrollTrigger: { 
+                    trigger: "#projects", 
+                    start: "-800% 75%", 
+                    end: "400% 75%", 
+                    scrub: true,
+                },
+                stagger: {
+                from: "start",
+                amount: 0.5    // Total time for stagger distribution
+                }, 
+                ease: 'power2.inOut',
+                opacity: 0, 
+                y: 250 
+            });
+        },
+     });
+
+    
 
   });
   
