@@ -4,13 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // Intro Animations
     gsap.from("#rence", { 
-      duration: 1, 
-      y: '100%', 
-      ease: 'power2.inOut' 
-    });
-    gsap.to("#rence", { 
       duration: 1.5, 
-      opacity: 1, 
+      opacity: 0,
+      y: 100, 
       ease: 'power2.inOut' 
     });
   
@@ -85,7 +81,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // ScrollTo
 
     const menuItems = document.querySelectorAll("#menu-item");
+    const sections = document.querySelectorAll("section");
 
+    // Loop through sections and create ScrollTriggers
+    sections.forEach((section, idx) => {
+      const targetMenuItem = menuItems[idx];
+  
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 50%", // When the section hits the middle of the viewport
+        end: "bottom 50%", // When the section leaves the middle of the viewport
+        onEnter: () => {
+          menuItems.forEach(item => item.classList.remove("active")); // Remove active class from all
+          targetMenuItem.classList.add("active"); // Add active class to the corresponding item
+        },
+        onLeave: () => {
+          targetMenuItem.classList.remove("active"); // Remove active class when leaving the section
+        },
+        onEnterBack: () => {
+          menuItems.forEach(item => item.classList.remove("active"));
+          targetMenuItem.classList.add("active");
+        },
+        onLeaveBack: () => {
+          targetMenuItem.classList.remove("active");
+        },
+      });
+    });
+
+    // Scroll on navbar click
     menuItems.forEach((menuItem, idx) => {
         menuItem.addEventListener("click", (event) => {
           event.preventDefault(); // Prevent the default anchor behavior if using <a> tags
