@@ -1,6 +1,6 @@
 # My-Portfolio
 
-# 0.5.0
+# 1.0.0
 Site got deployed on Netlify.
 
 Issues:
