@@ -91,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
         start: "top 50%", // When the section hits the middle of the viewport
         end: "bottom 50%", // When the section leaves the middle of the viewport
         offsetY: 100,
-        markers: true,
         onEnter: () => {
             menuItems.forEach(item => {
                 item.classList.remove("text-white"); // Remove the text color from all items
