@@ -81,6 +81,26 @@ document.addEventListener("DOMContentLoaded", () => {
       opacity: 0, 
       y: 250 
     });
+
+    // ScrollTo
+
+    const menuItems = document.querySelectorAll("#menu-item");
+
+    menuItems.forEach((menuItem, idx) => {
+        menuItem.addEventListener("click", (event) => {
+          event.preventDefault(); // Prevent the default anchor behavior if using <a> tags
+      
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: {
+              y: "#section-" + (idx + 1), // Dynamically target the section
+              autoKill: true // Stops scrolling if the user interacts mid-scroll
+            },
+            ease: "power2.inOut"
+          });
+        });
+      });
+
   });
   
 
