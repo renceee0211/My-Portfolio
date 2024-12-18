@@ -3,7 +3,7 @@
 # 1.0.0
 Site got deployed on Netlify.
 
-Issues:
-● Images not loading
-● Not yet fully responsive.
-● Need to refine color palette.
+Issues:<br>
+● Images not loading <br>
+● Not yet fully responsive. <br>
+● Need to refine color palette. <br>
