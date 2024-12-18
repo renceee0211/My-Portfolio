@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
             duration: 1,
             scrollTo: {
               y: "#section-" + (idx + 1), // Dynamically target the section
+              offsetY: 100,
               autoKill: true // Stops scrolling if the user interacts mid-scroll
             },
             ease: "power2.inOut"
