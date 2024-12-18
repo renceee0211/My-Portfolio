@@ -22,7 +22,7 @@ module.exports = {
         accentColor: '#5953ce'
       },
       backgroundImage:{
-        bg1: "url('../assets/bg1.jpg')",
+        bg1: "url('assets/bg1.jpg')",
       }
     },
   },

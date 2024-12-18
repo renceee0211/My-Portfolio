@@ -790,7 +790,7 @@ video {
 }
 
 .bg-bg1 {
-  background-image: url('../assets/bg1.jpg');
+  background-image: url('assets/bg1.jpg');
 }
 
 .bg-gradient-to-t {
