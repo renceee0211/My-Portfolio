@@ -78,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
       y: 250 
     });
 
-    // ScrollTo
 
     const menuItems = document.querySelectorAll("#menu-item");
     const sections = document.querySelectorAll("section");
@@ -91,20 +90,32 @@ document.addEventListener("DOMContentLoaded", () => {
         trigger: section,
         start: "top 50%", // When the section hits the middle of the viewport
         end: "bottom 50%", // When the section leaves the middle of the viewport
+        offsetY: 100,
+        markers: true,
         onEnter: () => {
-          menuItems.forEach(item => item.classList.remove("active")); // Remove active class from all
-          targetMenuItem.classList.add("active"); // Add active class to the corresponding item
-        },
-        onLeave: () => {
-          targetMenuItem.classList.remove("active"); // Remove active class when leaving the section
-        },
-        onEnterBack: () => {
-          menuItems.forEach(item => item.classList.remove("active"));
-          targetMenuItem.classList.add("active");
-        },
-        onLeaveBack: () => {
-          targetMenuItem.classList.remove("active");
-        },
+            menuItems.forEach(item => {
+                item.classList.remove("text-white"); // Remove the text color from all items
+                item.classList.add("text-white"); // Set all items to inactive color
+              });
+              targetMenuItem.classList.remove("text-white"); // Remove inactive color
+              targetMenuItem.classList.add("text-accentColor"); // Set the active item to blue
+            },
+            onLeave: () => {
+              targetMenuItem.classList.remove("text-accentColor"); // Remove active color
+              targetMenuItem.classList.add("text-white"); // Set back to inactive color
+            },
+            onEnterBack: () => {
+              menuItems.forEach(item => {
+                item.classList.remove("text-white"); // Remove the text color from all items
+                item.classList.add("text-white"); // Set all items to inactive color
+              });
+              targetMenuItem.classList.remove("text-white"); // Remove inactive color
+              targetMenuItem.classList.add("text-accentColor"); // Set the active item to blue
+            },
+            onLeaveBack: () => {
+              targetMenuItem.classList.remove("text-accentColor"); // Remove active color
+              targetMenuItem.classList.add("text-white"); // Set back to inactive color
+            },
       });
     });
 
