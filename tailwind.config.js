@@ -17,7 +17,7 @@ module.exports = {
       colors:{
         accentColor: '#4891CE',
         lightMode: '#F3F2FA',
-        darkMode: '050505',
+        darkMode: '#050505',
       },
       backgroundImage:{
         bg1: "url('assets/bg1.jpg')",
