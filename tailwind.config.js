@@ -11,15 +11,13 @@ module.exports = {
     },
 
     fontFamily: {
-      sans: ['DM Sans', 'sans-serif']
+      sans: ['General Sans', 'sans-serif']
     },
     extend: {
       colors:{
-        darkMode: '#121212',
-        darkmode2: '#171717',
-        lighterBlack: '#282828',
-        mainTextCol: '#8b8b8b',
-        accentColor: '#5953ce'
+        accentColor: '#4891CE',
+        lightMode: '#F3F2FA',
+        darkMode: '050505',
       },
       backgroundImage:{
         bg1: "url('assets/bg1.jpg')",
