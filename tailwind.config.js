@@ -11,7 +11,7 @@ module.exports = {
     },
 
     fontFamily: {
-      sans: ['DM Sans', 'sans-serif'],
+      sans: ['DM Sans', 'sans-serif']
     },
     extend: {
       colors:{
@@ -27,6 +27,9 @@ module.exports = {
     },
   },
   plugins: [
+      require('@tailwindcss/typography'),
+      require('@tailwindcss/forms'),
+      require('@tailwindcss/aspect-ratio'),
   ],
 }
 

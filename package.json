@@ -9,7 +9,12 @@
   "license": "ISC",
   "keywords": [],
   "devDependencies": {
-    "tailwindcss": "^3.4.16"
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
   },
   "dependencies": {
     "@studio-freight/lenis": "^1.0.42",
@@ -71,7 +76,6 @@
     "picomatch": "^2.3.1",
     "pify": "^2.3.0",
     "pirates": "^4.0.6",
-    "postcss": "^8.4.49",
     "postcss-import": "^15.1.0",
     "postcss-js": "^4.0.1",
     "postcss-load-config": "^4.0.2",
@@ -104,5 +108,13 @@
     "wrap-ansi-cjs": "^7.0.0",
     "yaml": "^2.6.1"
   },
-  "description": ""
+  "description": "● Added gsap scrollTo function on Navbar. <br>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renceee0211/My-Portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/renceee0211/My-Portfolio/issues"
+  },
+  "homepage": "https://github.com/renceee0211/My-Portfolio#readme"
 }
