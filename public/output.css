@@ -792,6 +792,10 @@ select {
   flex-direction: row;
 }
 
+.place-items-center {
+  place-items: center;
+}
+
 .overflow-y-scroll {
   overflow-y: scroll;
 }
@@ -809,8 +813,38 @@ select {
   padding: 1.5rem;
 }
 
+.px-20 {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.font-serif {
+  font-family: Newsreader, serif;
+}
+
+.text-\[61\.04px\] {
+  font-size: 61.04px;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
 .font-semibold {
   font-weight: 600;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.text-customGray {
+  --tw-text-opacity: 1;
+  color: rgb(110 110 110 / var(--tw-text-opacity, 1));
 }
 
 .drop-shadow-lg {
