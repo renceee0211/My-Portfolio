@@ -749,28 +749,20 @@ select {
   outline: 1px auto -webkit-focus-ring-color;
 }
 
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
-.right-0 {
-  right: 0px;
-}
-
-.top-0 {
-  top: 0px;
-}
-
 .z-50 {
   z-index: 50;
 }
 
 .col-span-1 {
   grid-column: span 1 / span 1;
+}
+
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.row-span-1 {
+  grid-row: span 1 / span 1;
 }
 
 .mx-20 {
@@ -787,12 +779,20 @@ select {
   margin-top: 2.75rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
 
 .mt-4 {
   margin-top: 1rem;
+}
+
+.mt-60 {
+  margin-top: 15rem;
 }
 
 .mt-80 {
@@ -831,6 +831,10 @@ select {
   height: 100svh;
 }
 
+.max-h-\[425px\] {
+  max-height: 425px;
+}
+
 .w-\[438px\] {
   width: 438px;
 }
@@ -865,8 +869,8 @@ select {
   flex-direction: row;
 }
 
-.flex-col {
-  flex-direction: column;
+.flex-row-reverse {
+  flex-direction: row-reverse;
 }
 
 .place-content-center {
@@ -881,20 +885,33 @@ select {
   align-content: center;
 }
 
-.items-end {
-  align-items: flex-end;
+.items-center {
+  align-items: center;
 }
 
 .justify-evenly {
   justify-content: space-evenly;
 }
 
-.gap-5 {
-  gap: 1.25rem;
+.justify-items-center {
+  justify-items: center;
+}
+
+.gap-x-5 {
+  -moz-column-gap: 1.25rem;
+       column-gap: 1.25rem;
 }
 
 .gap-y-16 {
   row-gap: 4rem;
+}
+
+.gap-y-5 {
+  row-gap: 1.25rem;
+}
+
+.justify-self-end {
+  justify-self: end;
 }
 
 .overflow-y-scroll {
@@ -924,6 +941,10 @@ select {
 
 .pr-20 {
   padding-right: 5rem;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .font-serif {
@@ -966,6 +987,10 @@ select {
 
 .italic {
   font-style: italic;
+}
+
+.leading-\[61px\] {
+  line-height: 61px;
 }
 
 .text-customGray {
