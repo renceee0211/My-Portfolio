@@ -11,13 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
     gsap.from("#subtitle", { 
-      duration: 1, 
-      y: '150%', 
+      duration: 1.5, 
+      y: '120%', 
       opacity: 0, 
       ease: 'power2.inOut', 
-      delay: 1 
+      delay: 0.5, 
+      stagger: 0.3
     });
   
+    gsap.from('#crafted', { 
+      duration: 0.7, 
+      opacity: 0, 
+      ease: 'power1.inOut', 
+      stagger: 0.3 
+    });
+    
     gsap.from('#topnav', { 
       duration: 0.7, 
       opacity: 0, 
