@@ -22,7 +22,7 @@ module.exports = {
         customGray: '#6E6E6E',
       },
       backgroundImage:{
-        bg1: "url('assets/bg1.jpg')",
+        bg1: "url('assets/cta-bg.jpg')",
       }
     },
   },
