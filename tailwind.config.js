@@ -12,7 +12,8 @@ module.exports = {
 
     fontFamily: {
       sans: ['General Sans', 'sans-serif'],
-      serif: ['Newsreader', 'serif']
+      serif: ['Newsreader', 'serif'],
+      handwrite: ['Playpen Sans']
     },
     extend: {
       colors:{

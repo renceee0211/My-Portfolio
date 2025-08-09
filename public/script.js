@@ -77,11 +77,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gsap.timeline({
       scrollTrigger: {
+        trigger: '#arrow-1',
+        start: 'top 90%',
+        end: '70% 70%',
+        scrub: true,
+
+      }
+    }).from('#info-1', { 
+      y: 50, 
+      rotation: -5,
+      opacity: 0 
+    });
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#about-text',
+        start: 'bottom 90%',
+        end: '200% 70%',
+        scrub: true,
+        markers: true,
+      }
+    }).from('#arrow-1', { 
+      y: 50,
+      rotation: -35, 
+      opacity: 0 
+    });
+  
+
+    gsap.timeline({
+      scrollTrigger: {
         trigger: '#about-text',
         start: 'top 80%',
         end: 'bottom 50%',
         scrub: true,
-        markers: true,
       }
     }).from('#about-text', { 
       x: -100, 
