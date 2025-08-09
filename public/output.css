@@ -749,8 +749,24 @@ select {
   outline: 1px auto -webkit-focus-ring-color;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
 .sticky {
   position: sticky;
+}
+
+.bottom-\[13\%\] {
+  bottom: 13%;
+}
+
+.left-\[35\%\] {
+  left: 35%;
 }
 
 .top-2 {
@@ -865,6 +881,10 @@ select {
 
 .min-h-svh {
   min-height: 100svh;
+}
+
+.w-20 {
+  width: 5rem;
 }
 
 .w-64 {
@@ -1010,6 +1030,11 @@ select {
   background-color: rgb(243 242 250 / var(--tw-bg-opacity, 1));
 }
 
+.bg-slate-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(100 116 139 / var(--tw-bg-opacity, 1));
+}
+
 .bg-\[radial-gradient\(circle_at_bottom_right\2c _\#4891CE\2c _transparent_40\%\)\] {
   background-image: radial-gradient(circle at bottom right, #4891CE, transparent 40%);
 }
@@ -1076,6 +1101,11 @@ select {
   font-size: 61.04px;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1098,6 +1128,10 @@ select {
 
 .italic {
   font-style: italic;
+}
+
+.leading-8 {
+  line-height: 2rem;
 }
 
 .leading-\[61px\] {
