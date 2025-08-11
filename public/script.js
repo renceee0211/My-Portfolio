@@ -32,21 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: 'power1.inOut', 
       stagger: 0.3 
     });
-  
-    
-  
-    // Rence Picture Scroll Animation
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '-50% 75%',
-        end: '60% 50%',
-        scrub: true,
-      }
-    }).from('#rencePic', { 
-      x: -200, 
-      opacity: 0 
-    });
 
 
     gsap.timeline({
@@ -61,6 +46,20 @@ document.addEventListener("DOMContentLoaded", () => {
       opacity: 0 
     });
   
+
+    // Rence Picture Scroll Animation
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#rencePic',
+        start: '-50% 75%',
+        end: '60% 50%',
+        scrub: true,
+      }
+    }).from('#rencePic', { 
+      x: -200, 
+      opacity: 0 
+    });
+
     // About Me
     gsap.timeline({
       scrollTrigger: {
@@ -70,12 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
         scrub: true,
       }
     }).from('#about-me', { 
-      x: -50, 
+      x: 50, 
       opacity: 0 
     });
  
     // About Text
-  gsap.timeline({
+    gsap.timeline({
       scrollTrigger: {
         trigger: '#about-text',
         start: 'top 90%',
@@ -83,8 +82,20 @@ document.addEventListener("DOMContentLoaded", () => {
         scrub: true,
       }
     }).from('#about-text', { 
-      x: -100, 
+      x: 100, 
       opacity: 0 
+    });
+
+    // Softwares
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#rencePic',
+        start: 'top 90%',
+        end: '50% 20%',
+        scrub: true,
+      }
+    }).from('#software', { 
+      scale: 0,
     });
 
 
@@ -214,12 +225,28 @@ document.addEventListener("DOMContentLoaded", () => {
         scrub: true,
       }
     }).from('#open-genre', { 
+      scale: 0,
       x:-80,
       rotation: -35, 
       opacity: 0 
     });
+
   });
   
+
+  gsap.utils.toArray(".particle").forEach((p) => {
+  gsap.fromTo(p,
+    { y: "100vh", opacity: 0 },
+    {
+      y: "-10vh",
+      opacity: 1,
+      repeat: -1,
+      duration: gsap.utils.random(8, 15),
+      ease: "none",
+      delay: gsap.utils.random(0, 5)
+    }
+  );
+});
 
 
 

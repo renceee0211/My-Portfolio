@@ -769,6 +769,10 @@ select {
   bottom: 25%;
 }
 
+.bottom-\[29\%\] {
+  bottom: 29%;
+}
+
 .bottom-\[33\%\] {
   bottom: 33%;
 }
@@ -801,12 +805,28 @@ select {
   left: 5%;
 }
 
+.left-\[50\%\] {
+  left: 50%;
+}
+
+.left-\[60\%\] {
+  left: 60%;
+}
+
 .left-\[7\%\] {
   left: 7%;
 }
 
+.left-\[70\%\] {
+  left: 70%;
+}
+
 .left-\[9\%\] {
   left: 9%;
+}
+
+.right-\[32\%\] {
+  right: 32%;
 }
 
 .top-16 {
@@ -815,10 +835,6 @@ select {
 
 .top-2 {
   top: 0.5rem;
-}
-
-.top-\[12\%\] {
-  top: 12%;
 }
 
 .top-\[14\%\] {
@@ -919,6 +935,10 @@ select {
   height: 4rem;
 }
 
+.h-2 {
+  height: 0.5rem;
+}
+
 .h-20 {
   height: 5rem;
 }
@@ -933,6 +953,10 @@ select {
 
 .h-auto {
   height: auto;
+}
+
+.h-dvh {
+  height: 100dvh;
 }
 
 .h-svh {
@@ -953,6 +977,10 @@ select {
 
 .w-16 {
   width: 4rem;
+}
+
+.w-2 {
+  width: 0.5rem;
 }
 
 .w-20 {
@@ -989,6 +1017,11 @@ select {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.rotate-\[-2deg\] {
+  --tw-rotate: -2deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .rotate-\[-4deg\] {
   --tw-rotate: -4deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1009,11 +1042,6 @@ select {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.rotate-\[180deg\] {
-  --tw-rotate: 180deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .rotate-\[4deg\] {
   --tw-rotate: 4deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1021,6 +1049,11 @@ select {
 
 .rotate-\[7deg\] {
   --tw-rotate: 7deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-\[8deg\] {
+  --tw-rotate: 8deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1115,6 +1148,10 @@ select {
   overflow-y: scroll;
 }
 
+.rounded-\[10px\] {
+  border-radius: 10px;
+}
+
 .rounded-\[12px\] {
   border-radius: 12px;
 }
@@ -1125,6 +1162,10 @@ select {
 
 .rounded-\[50px\] {
   border-radius: 50px;
+}
+
+.rounded-full {
+  border-radius: 9999px;
 }
 
 .border {
@@ -1280,6 +1321,10 @@ select {
 .text-lightMode {
   --tw-text-opacity: 1;
   color: rgb(243 242 250 / var(--tw-text-opacity, 1));
+}
+
+.opacity-70 {
+  opacity: 0.7;
 }
 
 .drop-shadow-lg {
