@@ -33,13 +33,18 @@ document.addEventListener("DOMContentLoaded", () => {
       stagger: 0.3 
     });
 
+    gsap.from('#bg-glow', { 
+      duration: 1, 
+      opacity: 0, 
+      ease: 'power1.inOut', 
+    });
 
     gsap.timeline({
       scrollTrigger: {
         trigger: '#crafted-arrow',
         start: 'top 80%',
         end: '60% 50%',
-        scrub: 0.5,
+        scrub: true,
       }
     }).to('#crafted-arrow', { 
       y: -100, 
@@ -106,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
         start: '80% 90%',
         end: '110% 60%',
         scrub: true,
-        markers: true,
       }
     }).from('#info-1', { 
       y: 50, 
@@ -231,27 +235,46 @@ document.addEventListener("DOMContentLoaded", () => {
       opacity: 0 
     });
 
+    gsap.to("#bg-glow-1", {
+      x: -150,
+      scrollTrigger: {
+        trigger: "#section-1",
+        start: "top top",
+        end: "200% bottom",
+        scrub: true
+      }
+    });
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#section-1',
+        start: 'top top',
+        end: '200% 50%',
+        scrub: true,
+      }
+    }).to('#bg-glow-2', { 
+      opacity: 1,
+    });
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#section-1',
+        start: 'top top',
+        end: '200% 50%',
+        scrub: true,
+      }
+    }).to('#bg-glow', { 
+      opacity: 0,
+    });
+
   });
   
 
-  gsap.utils.toArray(".particle").forEach((p) => {
-  gsap.fromTo(p,
-    { y: "100vh", opacity: 0 },
-    {
-      y: "-10vh",
-      opacity: 1,
-      repeat: -1,
-      duration: gsap.utils.random(8, 15),
-      ease: "none",
-      delay: gsap.utils.random(0, 5)
-    }
-  );
-});
-
+    
 
 
  const lenis = new Lenis({
- duration: 1.2,
+ duration: 1,
  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
  direction: 'vertical', // vertical, horizontal
  gestureDirection: 'vertical', // vertical, horizontal, both

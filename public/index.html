@@ -19,13 +19,13 @@
     <script  type="module" src="script.js"></script>
 </head>
 
-<body class="font-family:sans overflow-y-scroll bg-lightMode backdrop-blur-lg select-none">
+<body class="font-family:sans overflow-y-scroll bg-lightMode select-none">
     
 
         <!-- Navigation Bar -->
-    <nav id="topnav" class="sticky top-2 rounded-[15px] bg-lightMode w-169 z-50 h-20 mx-20 mt-4 p-6 drop-shadow-xl border border-black">
+    <nav id="topnav" class=" bg-lightMode w-dvh h-auto p-6 drop-shadow-xl">
         <div id="navElements" class="flex flex-row justify-between w-169">
-            <a href="#"><h6 class="font-semibold">Clarence Velasco</h6></a>
+            <a href="#"><h6 class="font-semibold ml-4">Clarence Velasco</h6></a>
             <div id="navButtons" class="flex flex-row w-96 justify-evenly">
                 <div>
                     <a href=""><h6>About</h6></a>
@@ -40,21 +40,25 @@
        </div>
     </nav>
 
-    <section id="section-1">
+    <section id="section-1" class="h-max bg-darkMode relative">
+        
+        <div id="bg-glow" class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,#2B32B2,transparent_60%)]"></div>
+        <div id="bg-glow-2" class="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,#1488CC,transparent_50%)] opacity-0"></div>
+        
         <!-- Hero Section -->
-        <div class=" relative h-80 mx-20 my-20 p-6 place-items-center top-16">
-            <h1 id="rence" class="font-extrabold text-[61.04px] text-customGray">I'm Clarence Velasco</h1>
-            <h1 id="subtitle" class="font-extrabold text-[61.04px] text-customGray">A <span class="font-serif font-bold italic">Multimedia Artist</span> and a <span class="font-serif font-bold italic">Web Developer</span></h1>
+        <div class="relative h-svh mx-20 p-6 place-items-center top-40">
+            <h1 id="rence" class="font-extrabold text-[61.04px] text-lightMode">I'm Clarence Velasco</h1>
+            <h1 id="subtitle" class="font-extrabold text-[61.04px] text-lightMode">A <span class="font-serif font-bold italic">Multimedia Artist</span> and a <span class="font-serif font-bold italic">Web Developer</span></h1>
+
+            <div id="crafted-arrow" class="absolute bottom-[30%] place-items-center z-50">
+                <p class="text-lightMode">Crafted with Code and Creativity</p>
+                <p class="mt-3 text-lightMode"><i class="fa-solid fa-circle-arrow-down text-2xl"></i></p>
+            </div>
             
-            <div class="absolute w-2 h-2 bg-darkMode rounded-full opacity-70 particle" style="left: 10%;"></div>
-            <div class="absolute w-2 h-2 bg-darkMode rounded-full opacity-70 particle" style="left: 30%;"></div>
-            <div class="absolute w-2 h-2 bg-darkMode rounded-full opacity-70 particle" style="left: 60%;"></div>
-            <div class="absolute w-2 h-2 bg-darkMode rounded-full opacity-70 particle" style="left: 80%;"></div>
         </div>
-        <div id="crafted-arrow" class="place-items-center mt-80">
-            <p>Crafted with Code and Creativity</p>
-            <p class="mt-3"><i class="fa-solid fa-circle-arrow-down text-2xl"></i></p>
-        </div>
+        
+        
+        
     </section>
 
     <section id="section-2">
@@ -78,13 +82,14 @@
                 <img id="ampm" src="assets/ampm.jpg" alt="" class="absolute -z-10 w-28 bottom-[38%] left-[5%] rotate-[-4deg] rounded-[10px]">
            </div>
            <div class="grid content-center pr-20 relative">
-                <!-- Photoshop -->
+                <!-- Softwares -->
                 <img id="software" src="assets/photoshop.png" alt="" class="absolute w-16 bottom-[29%] left-[40%] rotate-[-8deg]">
                 <img id="software" src="assets/illustrator.png" alt="" class="absolute w-16 bottom-[29%] left-[50%] rotate-[8deg]">
                 <img id="software" src="assets/after-effects.png" alt="" class="absolute w-16 bottom-[29%] left-[60%] rotate-[-8deg]">
                 <img id="software" src="assets/blender.png" alt="" class="absolute w-16 bottom-[29%] left-[70%] rotate-[8deg]">
                 <p id="software" class="absolute font-handwrite font-bold text-l text-darkMode bottom-[25%] right-[32%] rotate-[-2deg]">Softwares I mainly use!</p>
 
+                <!-- About Me -->
                 <h1 id="about-me" class="font-semibold text-[39.06px]">About Me</h1>
                 <p id="about-text" class=" text-lg leading-8">Since 2016, I have been immersed in the world of creativity. Starting with capturing and editing photos on my smartphone, I discovered a spark within me, and opportunities began to open one after another. My passion for tech and multimedia has built a strong foundation and brought me to where I am today. A mix of technical and creative skills—along with my love for pop culture, movies and video games—is what truly helped me shape my ideas and turn it into something impactful.</p>
            </div>
@@ -92,7 +97,7 @@
     </section>
     
     <section id="explore-section" class="">
-         <div class="grid mx-20 h-dvh place-content-center gradient-animate">
+         <div class="grid mx-20 h-dvh place-content-center">
             <h1 id="explore" class="text-8xl font-medium">Explore My Works <i class="fa-solid fa-circle-arrow-down"></i></h1>
         </div>
     </section>
