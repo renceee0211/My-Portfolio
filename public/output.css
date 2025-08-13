@@ -910,6 +910,10 @@ select {
   margin-top: 1rem;
 }
 
+.mt-48 {
+  margin-top: 12rem;
+}
+
 .mt-60 {
   margin-top: 15rem;
 }
