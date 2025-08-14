@@ -100,6 +100,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
 
+    // First section scrolltrigger
+    gsap.to("#section-1", {
+      scrollTrigger: {
+        trigger: "#section-2",
+        start: "top bottom", // when second section starts entering
+        end: "top top",      // when it reaches the top
+        scrub: true
+      },
+      opacity: 0,
+      scale: 0.9
+    });
+
+
     // Rence Picture Scroll Animation
     gsap.timeline({
       scrollTrigger: {
@@ -323,6 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
         trigger: '#explore-section',
         start: 'top 20%',
         delay: 0.5,
+        ease: 'hop'
       }
     }).to('#explore', { 
       duration: 1,

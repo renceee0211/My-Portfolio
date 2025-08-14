@@ -757,6 +757,10 @@ select {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .inset-0 {
   inset: 0px;
 }
@@ -849,12 +853,20 @@ select {
   top: 45%;
 }
 
+.top-0 {
+  top: 0px;
+}
+
 .-z-10 {
   z-index: -10;
 }
 
 .z-10 {
   z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
 }
 
 .z-50 {
@@ -888,6 +900,10 @@ select {
 .mx-20 {
   margin-left: 5rem;
   margin-right: 5rem;
+}
+
+.-mt-40 {
+  margin-top: -10rem;
 }
 
 .ml-4 {
@@ -1217,6 +1233,10 @@ select {
 
 .pt-10 {
   padding-top: 2.5rem;
+}
+
+.pt-11 {
+  padding-top: 2.75rem;
 }
 
 .text-right {

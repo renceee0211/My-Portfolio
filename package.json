@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build-css": "tailwindcss build -i src/input.css -o public/output.css",
+    "build-css": "tailwindcss build -i src/input.css -o public/output.css --watch",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"

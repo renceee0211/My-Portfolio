@@ -21,7 +21,7 @@
     <script  type="module" src="script.js"></script>
 </head>
 
-<body class="font-family:sans overflow-y-scroll bg-lightMode select-none">
+<body class="font-family:sans overflow-y-scroll bg-darkMode select-none">
     
 
         <!-- Navigation Bar -->
@@ -42,8 +42,8 @@
        </div>
     </nav>
 
-    <section id="section-1" class="h-max bg-darkMode relative">
-
+    <section id="section-1" class="h-max bg-darkMode sticky top-0">
+\
             <div id="bg-glow" class="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,#2B32B2,transparent_60%)]"></div>
             <div id="bg-glow-2" class="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,#1488CC,transparent_50%)] opacity-0"></div>
             
@@ -58,13 +58,13 @@
                 </div>
                 
             </div>
-        
+\
         
     </section>
 
-    <section id="section-2">
+    <section id="section-2" class="z-20 relative bg-lightMode">
         <!-- About Container -->
-        <div class="grid grid-cols-2 mx-20 h-svh p-12 mt-11 relative">
+        <div class="grid grid-cols-2 mx-20 h-svh p-12  relative">
            <div id="image" class="grid place-content-center ">
                 <div id="rencePic" class="w-[438px] h-[512px] rounded-[15px] drop-shadow-lg"><img src="assets/clarence.jpg" alt="Clarence Velasco" class=" rounded-[15px]" loading="lazy"></div>
                 <!-- A BSIT Grad! -->
@@ -97,7 +97,7 @@
         </div>
     </section>
     
-    <section id="explore-section" class="relative">
+    <section id="explore-section" class="relative bg-lightMode">
          <div class="grid mx-20 h-dvh place-content-center">
             <h1 id="explore" class="text-8xl font-medium">Explore My Works <i class="fa-solid fa-circle-arrow-down"></i></h1>
         </div>
@@ -105,7 +105,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="section-3" class="mt-48">
+    <section id="section-3" class=" relative mt-48 bg-lightMode">
         <!-- Poster Designs -->
         <div id="poster-design" class="grid grid-cols-3 grid-rows-2 gap-x-5 gap-y-16 mx-20 h-auto">
             <div class="col-span-1">
@@ -292,7 +292,7 @@
     </section>
 
     <!-- CTA -->
-    <section id="section-4">
+    <section id="section-4" class="relative">
         <div class="bg-bg1 bg-cover bg-center">
             <div class="bg-darkMode/75 backdrop-opacity-75"> 
                 <div class="bg-[radial-gradient(circle_at_bottom_right,_#4891CE,_transparent_40%)]">    
@@ -315,7 +315,7 @@
     </section>
 
     <!-- Footer -->
-     <section id="section-5">
+     <section id="section-5" class="relative">
         <div class="bg-darkMode pt-10">
             <div class="grid grid-cols-4 mx-20 min-h-96">
                 <div class="col-span-1 flex justify-around">
