@@ -894,10 +894,6 @@ select {
   width: auto;
 }
 
-.w-full {
-  width: 100%;
-}
-
 .max-w-\[90vw\] {
   max-width: 90vw;
 }
