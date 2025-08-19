@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./index.html'],
+export default {
+  content: [ "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}"],
 
   theme: {
     screens:{
@@ -23,7 +24,7 @@ module.exports = {
         customGray: '#6E6E6E',
       },
       backgroundImage:{
-        bg1: "url('assets/cta-bg.jpg')",
+        bg1: "url('/cta-bg.jpg')",
       }
     },
   },
@@ -33,4 +34,5 @@ module.exports = {
       require('@tailwindcss/aspect-ratio'),
   ],
 }
+
 

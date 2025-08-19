@@ -6,6 +6,7 @@ import { SplitText } from "gsap/SplitText";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import Lenis from 'lenis';
 
+
 document.querySelectorAll(".nav-btn .fill").forEach(el => {
       el.classList.add("bg-blue-500"); // Tailwind color
     });
