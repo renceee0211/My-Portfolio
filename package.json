@@ -4,9 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build-css": "tailwindcss build -i src/input.css -o public/output.css",
+
     "dev": "vite",
-    "build": "npm run build-css && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "author": "Clarence Velasco",
