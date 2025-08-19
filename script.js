@@ -3,12 +3,28 @@ import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { SplitText } from "gsap/SplitText";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import Lenis from 'lenis';
 
+document.querySelectorAll(".nav-btn .fill").forEach(el => {
+      el.classList.add("bg-blue-500"); // Tailwind color
+    });
+
+    document.querySelectorAll(".nav-btn").forEach(btn => {
+      const fill = btn.querySelector(".fill");
+      btn.addEventListener("mouseenter", () => {
+        gsap.to(fill, { y: 0, duration: 0.3, ease: "hop" });
+        gsap.to(btn,  { scale: 1.1, duration: 0.2, ease: "hop" });
+      });
+      btn.addEventListener("mouseleave", () => {
+        gsap.to(fill, { y: "100%", duration: 0.3, ease: "hop" });
+        gsap.to(btn,  { scale: 1, duration: 0.2, ease: "hop" });
+      });
+    });
 
 document.addEventListener("DOMContentLoaded", () => {
   // Register GSAP plugins
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, CustomEase);
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText, ScrambleTextPlugin, CustomEase);
 
     // Lenis
     const lenis = new Lenis({
@@ -34,38 +50,59 @@ document.addEventListener("DOMContentLoaded", () => {
     // ScrollTo
     document.querySelectorAll("#arrow-button, #aboutBtn").forEach((btn, index) => {
         btn.addEventListener("click", () => {
-          gsap.to(window, {duration: 1, scrollTo:"#section-2", ease:'power2.inOut'});
+          gsap.to(window, {duration: 1, scrollTo:"#about-section", ease:'hop'});
         });
       });
 
     document.querySelectorAll("#workBtn").forEach((btn, index) => {
         btn.addEventListener("click", () => {
-          gsap.to(window, {duration: 1, scrollTo:"#explore-section", ease:'power2.inOut'});
+          gsap.to(window, {duration: 1, scrollTo:"#explore-section", ease:'hop'});
+        });
+      });
+
+    document.querySelectorAll("#contactBtn").forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          gsap.to(window, {duration: 1, scrollTo:"#cta-section", ease:'hop'});
         });
       });
     
+
+    // SplitText
+    document.fonts.ready.then(() => {
+      // Hero Animations
+      let split = new SplitText("#rence, #subtitle", {type: "words"});
+    
+      gsap.from(split.words, { 
+        duration: 1, 
+        opacity: 0,
+        y: 100, 
+        stagger: 0.2,
+        ease: "hop", 
+      });
+
+      // CTA SplitText
+      let ctasplit = new SplitText('#cta-header', {type: "chars"});
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '#cta-section',
+          start: 'top 60$'
+        }
+      }).from(ctasplit.chars, {
+        x: 150,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power4",
+        stagger: 0.04,
+      });
+
+    });
+
+
     // CustomEase
     CustomEase.create("hop", ".87, 0, .13, 1");
 
-    // Intro Animations
-    let split = new SplitText("#rence, #subtitle", {type: "words"});
     
-    gsap.from(split.words, { 
-      duration: 1, 
-      opacity: 0,
-      y: 100, 
-      stagger: 0.2,
-      ease: "hop", 
-    });
-  
-    // gsap.from("#subtitle", { 
-    //   duration: 1.5, 
-    //   y: '120%', 
-    //   opacity: 0, 
-    //   ease: 'hop', 
-    //   delay: 0.5, 
-    //   stagger: 0.3
-    // });
   
     gsap.from('#crafted-arrow', { 
       duration: 0.7, 
@@ -87,6 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: 'hop', 
     });
 
+    
+
+
     gsap.timeline({
       scrollTrigger: {
         trigger: '#crafted-arrow',
@@ -101,9 +141,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
 
     // First section scrolltrigger
-    gsap.to("#section-1", {
+    gsap.to("#hero-section", {
       scrollTrigger: {
-        trigger: "#section-2",
+        trigger: "#about-section",
         start: "top bottom", // when second section starts entering
         end: "top top",      // when it reaches the top
         scrub: true
@@ -138,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
       x: 50, 
       opacity: 0 
     });
- 
+
     // About Text
     gsap.timeline({
       scrollTrigger: {
@@ -282,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Open-Genre
-       gsap.timeline({
+    gsap.timeline({
       scrollTrigger: {
         trigger: '#rencePic',
         start: 'top 90%',
@@ -299,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gsap.timeline({
       scrollTrigger: {
-        trigger: '#section-1',
+        trigger: '#hero-section',
         start: 'top top',
         end: '200% 50%',
         scrub: true,
@@ -310,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gsap.timeline({
       scrollTrigger: {
-        trigger: '#section-1',
+        trigger: '#hero-section',
         start: 'top top',
         end: '200% 50%',
         scrub: true,
@@ -339,32 +379,189 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: 'hop'
       }
     }).to('#explore', { 
-      duration: 1,
       opacity: 1,
       color: '#F3F2FA'
     });
 
+      // CTA
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#cta-section',
+        start: 'top 20%',
+        end: 'bottom 80%',
+        scrub: true
+      }
+    }).from('#cta-bg', { 
+      opacity: 0,
+    });
+
+    // CTA Glow
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: '#cta-section',
+        start: 'top 50%',
+        end: 'bottom 80%',
+        scrub: true
+      }
+    }).from('#bg-gradient', { 
+      opacity: 0,
+    });
+
+    
 
 
+    // Poster Scramble Text
+    let postertl = gsap.timeline ({
+      scrollTrigger: {
+        trigger: '#poster-design',
+        start: 'top 50%',
+        toggleActions: "play none none none"
+      }
+    });
+      postertl.to('#poster-text', {
+        duration: 1.8,
+        scrambleText:{
+          text: "Poster Designs",
+          chars: "x0",
+          revealDelay: 0.5,
+          speed: 1,
+        }
+      })
+
+      .from('#poster-arrow', {
+          opacity: 0,
+          x: -50,
+          stagger: 0.3,
+    });
+
+      // Logo Scramble Text
+      let logotl = gsap.timeline ({
+      scrollTrigger: {
+        trigger: '#logo-design',
+        start: 'top 50%',
+        toggleActions: "play none none none"
+      }
+    });
+      logotl.to('#logo-text', {
+        duration: 1.8,
+        scrambleText:{
+          text: "Logo Designs",
+          chars: "x0",
+          revealDelay: 0.5,
+          speed: 1,
+        }
+      })
+
+      // .from('.card', {
+      //   opacity: 0,
+      //   y: -50,
+      //   stagger: 0.2
+      // })
+
+      .from('#logo-arrow', {
+          opacity: 0,
+          x: -50,
+          stagger: 0.3,
+      });
 
 
+      let merchtl = gsap.timeline ({
+      scrollTrigger: {
+        trigger: '#merch-design',
+        start: 'top 50%',
+        toggleActions: "play none none none"
+      }
+    });
+      merchtl.to('#merch-text', {
+        duration: 1.8,
+        scrambleText:{
+          text: "Merch Designs",
+          chars: "x0",
+          revealDelay: 0.5,
+          speed: 1,
+        }
+      })
+
+      .from('#merch-arrow', {
+          opacity: 0,
+          x: -50,
+          stagger: 0.3,
+      });
+
+      let motiontl = gsap.timeline ({
+      scrollTrigger: {
+        trigger: '#motion-design',
+        start: 'top 50%',
+        toggleActions: "play none none none"
+      }
+    });
+      motiontl.to('#motion-text', {
+        duration: 1.8,
+        scrambleText:{
+          text: "Motion Design",
+          chars: "x0",
+          revealDelay: 0.5,
+          speed: 1,
+        }
+      })
+
+      .from('#motion-arrow', {
+          opacity: 0,
+          x: -50,
+          stagger: 0.3,
+      });
 
 
+      let magtl = gsap.timeline ({
+      scrollTrigger: {
+        trigger: '#magazine',
+        start: 'top 50%',
+        toggleActions: "play none none none"
+      }
+    });
+      magtl.to('#magazine-text', {
+        duration: 1.8,
+        scrambleText:{
+          text: "Magazines/Newsletters",
+          chars: "x0",
+          revealDelay: 0.5,
+          speed: 1,
+        }
+      })
 
- });
-  
+      .from('#magazine-arrow', {
+          opacity: 0,
+          x: -50,
+          stagger: 0.3,
+      });
 
 
+      let socmedtl = gsap.timeline ({
+      scrollTrigger: {
+        trigger: '#socmed',
+        start: 'top 50%',
+        toggleActions: "play none none none"
+      }
+    });
+      socmedtl.to('#socmed-text', {
+        duration: 1.8,
+        scrambleText:{
+          text: "Social Media Graphics",
+          chars: "x0",
+          revealDelay: 0.5,
+          speed: 1,
+        }
+      })
 
+      .from('#socmed-arrow', {
+          opacity: 0,
+          x: -50,
+          stagger: 0.3,
+      });
 
 
 
     
 
 
-
-
-
-
- 
- 
+});
