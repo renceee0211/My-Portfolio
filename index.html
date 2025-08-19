@@ -19,7 +19,7 @@
 
 
 
-<body class="font-family:sans overflow-y-scroll bg-darkMode select-none">
+<body class="font-family:sans overflow-y-scroll w-full bg-darkMode select-none">
     
         <!-- Screen size guide -->
         <!-- <div id="screenSize"
@@ -38,42 +38,40 @@
         </script> -->
         <!-- End of Screen Size guide -->
 
-
-
     <!-- Navigation Bar -->
-    <nav id="topnav" class=" bg-lightMode w-auto h-auto drop-shadow-xl z-10 sm:py-4 md:p-6">
+    <nav id="topnav" class=" bg-lightMode w-auto h-auto drop-shadow-xl z-50 sm:py-4 md:p-6">
         <div id="navElements" class="md:flex flex-row justify-between place-items-center">
             <div id="site-logo" class="text-center sm:pb-4 md:pb-0">
                 <a href="#"><h6 class="font-semibold">Clarence Velasco</h6></a>
             </div>
             <div id="navButtons" class="md: flex flex-row space-x-12">
                 <div>
-                    <a class="nav-btn relative inline-block overflow-hidden px-2 py-1" id="aboutBtn" href="#">
+                    <a class="nav-btn relative inline-block px-2 py-1" id="aboutBtn" href="#">
                         <span class="label relative z-10">About</span> 
                         <span class="fill absolute inset-0 translate-y-full z-10"></span>
                     </a>
                 </div>
                 <div>
-                    <a class="nav-btn relative inline-block overflow-hidden px-2 py-1" id="workBtn" href="#"><span class="label relative z-10"> Work</span>
+                    <a class="nav-btn relative inline-block px-2 py-1" id="workBtn" href="#"><span class="label relative z-10"> Work</span>
                         <span class="fill absolute inset-0 translate-y-full z-10"></span></a>
                 </div>
                 <div>
-                    <a class="nav-btn relative inline-block overflow-hidden px-2 py-1" id="contactBtn" href="#"><span class="label relative z-10">Let's Talk</span>
+                    <a class="nav-btn relative inline-block px-2 py-1" id="contactBtn" href="#"><span class="label relative z-10">Let's Talk</span>
                     <span class="fill absolute inset-0 translate-y-full z-10"></span></a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section id="hero-section" class="h-max bg-darkMode sticky top-0">
+    <section id="hero-section" class="relative h-max bg-darkMode">
 
             <div id="bg-glow" class="absolute w-auto inset-0 bg-[radial-gradient(circle_at_50%_-20%,#2B32B2,transparent_60%)]"></div>
             <div id="bg-glow-2" class="absolute w-auto inset-0 bg-[radial-gradient(circle_at_50%_100%,#1488CC,transparent_50%)] opacity-0"></div>
             
             <!-- Hero Section -->
             <div class="relative h-svh top-40 sm:p-4 sm:mx-0 md:mx-20 md:p-6 place-items-center ">
-                <h1 id="rence" class="font-extrabold text-lightMode text-4xl md:text-6xl">I'm Clarence Velasco</h1>
-                <h1 id="subtitle" class="font-extrabold text-lightMode text-4xl mt-4 text-center md:text-6xl">A <span class="font-serif font-bold italic">Multimedia Artist</span> and a <span class="font-serif font-bold italic">Web Developer</span></h1>
+                <h1 id="rence" class="font-extrabold text-lightMode text-3xl md:text-6xl">I'm Clarence Velasco</h1>
+                <h1 id="subtitle" class="font-extrabold text-lightMode text-3xl mt-4 text-center md:text-6xl">A <span class="font-serif font-bold italic">Multimedia Artist</span> and a <span class="font-serif font-bold italic">Web Developer</span></h1>
 
                 <div id="crafted-arrow" class="absolute grid bottom-[30%] place-items-center z-50">
                     <p class="text-lightMode">Crafted with Code and Creativity</p>
@@ -82,49 +80,50 @@
             </div>  
     </section>
 
-    <section id="about-section" class="z-20 relative bg-lightMode overflow-hidden">
+    <section id="about-section" class="relative bg-lightMode ">
         <!-- About Container -->
-        <div class="h-svh grid sm:grid-cols-1 sm:mx-0 sm:px-4 sm:mb-60 md:grid-cols-2 md:relative md:mx-20 md:p-12">
-            <div id="image" class="grid place-content-center sm:py-32 md:col-span-1 ">
+        <div class="grid sm:grid-cols-1 sm:mx-0 sm:px-4 sm:py-32  md:grid-cols-2 md:relative md:mx-20 md:p-12 md:h-svh ">
+            <div id="image" class="relative grid place-content-center sm:py-32 md:col-span-1 ">
                 <!-- Grad pic -->
                 <img id="rencePic" src="assets/clarence.jpg" alt="Clarence Velasco" class="drop-shadow-lg rounded-[15px] sm:w-[250px] md:w-[438px]" loading="lazy">
                 <!-- A BSIT Grad! -->
-                <p id="info-1" class="absolute font-handwrite font-bold text-darkMode sm:rotate-[5deg] sm:text-l sm:bottom-[55%] sm:left-[65%] md:rotate-[-10deg] md:text-2xl md:bottom-[20%] md:left-[40%]">A BSIT Grad</p>
-                <img id="arrow-1" src="assets/arrow.png" alt="" class="absolute sm:w-12 sm:bottom-[58%] sm:left-[75%] md:rotate-[-15deg] md:w-20 md:bottom-[25%] md:left-[40%] ">
+                <p id="info-1" class="absolute font-handwrite font-bold text-darkMode sm:rotate-[5deg] sm:text-l sm:bottom-[8%] sm:left-[67%] md:rotate-[-10deg] md:text-2xl md:bottom-[10%] md:left-[75%]">A BSIT Grad</p>
+                <img id="arrow-1" src="assets/arrow.png" alt="" class="absolute sm:w-12 sm:bottom-[13%] sm:left-[78%] md:rotate-[-15deg] md:w-20 md:bottom-[15%] md:left-[78%] ">
 
                 <!-- Spiderman -->
-                <p id="info-2" class="absolute font-handwrite font-bold text-darkMode sm:rotate-[-6deg] sm:top-[6%] sm:left-[66%] md:text-xl md:rotate-[-15deg] md:top-[14%] md:left-[33%]">Fave Supe</p>
-                <img id="spiderman" src="assets/spiderman.png" alt="" class="absolute sm:w-16 sm:rotate-[13deg] sm:top-[9%] sm:left-[70%] md:w-24 md:top-[18%] md:left-[35%] md:rotate-[15deg]">
+                <p id="info-2" class="absolute font-handwrite font-bold text-darkMode sm:rotate-[-6deg] sm:top-[13%] sm:left-[66%] md:text-xl md:rotate-[-15deg] md:top-[11%] md:left-[65%]">Fave Supe</p>
+                <img id="spiderman" src="assets/spiderman.png" alt="" class="absolute sm:w-16 sm:rotate-[13deg] sm:top-[18%] sm:left-[70%] md:w-24 md:top-[15%] md:left-[68%] md:rotate-[15deg]">
 
                 <!-- Fave Albums -->
-                <p id="open-genre" class="absolute font-handwrite font-bold text-darkMode sm:text-sm sm:rotate-[-4deg] sm:bottom-[55%] sm:left-[10%] md:text-l md:rotate-[7deg] md:top-[45%] md:left-[2%]">An Open-Genre Person!</p>
-                <img id="bini" src="assets/bini.jpg" alt="" class="absolute sm:z-30 rounded-[5px] sm:w-14 sm:rotate-[6deg] sm:bottom-[60%] sm:left-[35%] md:z-30 md:w-28 md:bottom-[20%] md:left-[11%]  md:rotate-[10deg] md:rounded-[10px]">
-                <img id="aura" src="assets/aura.png" alt="" class="absolute sm:z-20 sm:rounded-[5px] sm:w-14 sm:rotate-[-6deg] sm:bottom-[58%] sm:left-[25%] md:z-20 md:w-28 md:bottom-[25%] md:left-[7%] md:rotate-[4deg] md:rounded-[10px]">
-                <img id="xg" src="assets/xg.jpg" alt="" class="absolute sm:z-10 sm:rounded-[5px] sm:w-14 sm:rotate-[6deg] sm:bottom-[60%] sm:left-[16%] md:z-10 md:w-28 md:bottom-[33%] md:left-[9%] md:rotate-[-8deg] md:rounded-[10px]">
-                <img id="ampm" src="assets/ampm.jpg" alt="" class="absolute sm:z-0 sm:rounded-[5px] sm:w-14 sm:rotate-[-6deg] sm:bottom-[63%] sm:left-[10%] md:w-28 md:bottom-[38%] md:left-[5%] md:rotate-[-4deg] md:rounded-[10px]">
+                <p id="open-genre" class="absolute font-handwrite font-bold text-darkMode sm:text-sm sm:rotate-[-4deg] sm:bottom-[8%] sm:left-[10%] md:text-l md:rotate-[7deg] md:top-[43%] md:left-[2%]">An Open-Genre Person!</p>
+                <img id="bini" src="assets/bini.jpg" alt="" class="absolute sm:z-30 rounded-[5px] sm:w-14 sm:rotate-[6deg] sm:bottom-[20%] sm:left-[35%] md:z-30 md:w-28 md:bottom-[15%] md:left-[24%]  md:rotate-[10deg] md:rounded-[10px]">
+                <img id="aura" src="assets/aura.png" alt="" class="absolute sm:z-20 sm:rounded-[5px] sm:w-14 sm:rotate-[-6deg] sm:bottom-[18%] sm:left-[25%] md:z-20 md:w-28 md:bottom-[23%] md:left-[13%] md:rotate-[4deg] md:rounded-[10px]">
+                <img id="xg" src="assets/xg.jpg" alt="" class="absolute sm:z-10 sm:rounded-[5px] sm:w-14 sm:rotate-[6deg] sm:bottom-[20%] sm:left-[16%] md:z-10 md:w-28 md:bottom-[33%] md:left-[16%] md:rotate-[-8deg] md:rounded-[10px]">
+                <img id="ampm" src="assets/ampm.jpg" alt="" class="absolute sm:z-0 sm:rounded-[5px] sm:w-14 sm:rotate-[-6deg] sm:bottom-[23%] sm:left-[10%] md:w-28 md:bottom-[38%] md:left-[8%] md:rotate-[-4deg] md:rounded-[10px]">
             </div>
 
-            <div class="grid content-center col-span-1 md:mx-0 ">
+            <div class="relative grid content-center col-span-1 md:mx-0 ">
                 <!-- Softwares -->
-                <img id="software" src="assets/photoshop.png" alt="" class="absolute sm:w-12 sm:bottom-[5%] sm:left-[22%] md:w-16 md:bottom-[28%] md:left-[65%]">
-                <img id="software" src="assets/illustrator.png" alt="" class="absolute sm:w-12 sm:bottom-[5%] sm:left-[37%] md:w-16 md:bottom-[28%] md:left-[70%]">
-                <img id="software" src="assets/after-effects.png" alt="" class="absolute sm:w-12 sm:bottom-[5%] sm:left-[52%] md:w-16 md:bottom-[28%] md:left-[75%]">
-                <img id="software" src="assets/blender.png" alt="" class="absolute sm:w-12 sm:bottom-[5%] sm:left-[67%] md:w-16 md:bottom-[28%] md:left-[80%]">
-                <p id="software" class="absolute font-handwrite font-bold text-darkMode sm:text-base sm:bottom-[2%] sm:left-[29%] md:text-lg md:bottom-[24%] md:left-[68.5%]">Softwares I mainly use!</p>
+                <img id="software" src="assets/photoshop.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[20%] md:w-16 md:bottom-[25%] md:left-[35%]">
+                <img id="software" src="assets/illustrator.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[35%] md:w-16 md:bottom-[25%] md:left-[45%]">
+                <img id="software" src="assets/after-effects.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[50%] md:w-16 md:bottom-[25%] md:left-[55%]">
+                <img id="software" src="assets/blender.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[65%] md:w-16 md:bottom-[25%] md:left-[65%]">
+                <p id="software" class="absolute font-handwrite font-bold text-darkMode sm:text-base sm:bottom-[-18%] sm:left-[23%] md:text-lg md:bottom-[21%] md:left-[42%]">Softwares I mainly use!</p>
 
                 <!-- About Me -->
-                <h1 id="about-me" class="font-semibold py-4 sm:text-3xl md:text-4xl ">About Me</h1>
-                <p id="about-text" class="sm:leading-9 md:text-lg md:leading-8">Since 2016, I have been immersed in the world of creativity. Starting with capturing and editing photos on my smartphone, I discovered a spark within me, and opportunities began to open one after another. My passion for tech and multimedia has built a strong foundation and brought me to where I am today. A mix of technical and creative skills—along with my love for pop culture, movies and video games—is what truly helped me shape my ideas and turn it into something impactful.</p>
-                <p id="about-text" class="sm:leading-9 md:text-lg md:leading-8 font-semibold italic">And by the way, this entire webpage was designed and developed by me!</p>
+                <div class="w-full max-w-full overflow-hidden">
+                    <h1 id="about-me" class="font-semibold py-4 sm:text-3xl md:text-4xl ">About Me</h1>
+                    <p id="about-text" class="sm:leading-9 md:text-lg md:leading-8">Since 2016, I have been immersed in the world of creativity. Starting with capturing and editing photos on my smartphone, I discovered a spark within me, and opportunities began to open one after another. My passion for tech and multimedia has built a strong foundation and brought me to where I am today. A mix of technical and creative skills—along with my love for pop culture, movies and video games—is what truly helped me shape my ideas and turn it into something impactful.</p>
+                    <p id="about-text" class="sm:leading-9 md:text-lg md:leading-8 font-semibold italic">And by the way, this entire webpage was designed and developed by me!</p>
+                </div>
             </div>
         </div>
     </section>
     
     <section id="explore-section" class="relative bg-lightMode ">
         <div class="grid h-svh place-content-center md:mx-20">
-            <h1 id="explore" class="sm:text-7xl sm:text-center md:text-left md:text-8xl font-medium z-10">Explore My Works <i class="fa-solid fa-circle-arrow-down"></i></h1>
+            <h1 id="explore" class="sm:text-4xl sm:text-center md:text-left md:text-8xl font-medium z-10">Explore My Works <i id="explore-arrow" class="fa-solid fa-circle-arrow-down"></i></h1>
         </div>
-        <div id="explore-bg" class="absolute inset-0"></div>
     </section>
 
     <!-- Projects Section -->
@@ -134,7 +133,7 @@
             <div class="col-span-1">
                 <div class="grid grid-rows-2">
                     <div class="row-span-1">
-                        <h3 id="poster-text" class="font-semibold text-[45px] md:justify-self-end md:text-[60px]">#####</h3>
+                        <h3 id="poster-text" class="font-semibold text-4xl md:justify-self-end md:text-6xl">#####</h3>
                     </div>
                     <div  class="row-span-1 flex md:flex-row-reverse">
                         <img id="poster-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
@@ -171,7 +170,7 @@
             <div class="col-span-1">
                 <div class="grid-rows-2">
                     <div class="row-span-1">
-                        <h3 id="logo-text" class=" font-semibold sm:text-5xl md:text-6xl md:justify-self-end">#####</h3>
+                        <h3 id="logo-text" class=" font-semibold sm:text-4xl md:text-6xl md:justify-self-end">#####</h3>
                     </div>
                     <div class="row-span-1 flex md:flex-row-reverse">
                         <img id="logo-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
@@ -197,7 +196,7 @@
             <div class="col-span-1 ">
                 <div class="grid-rows-2">
                     <div class="row-span-1">
-                        <h3 id="merch-text" class="font-semibold sm:text-5xl md:text-6xl md:justify-self-end">#####</h3>
+                        <h3 id="merch-text" class="font-semibold sm:text-4xl md:text-6xl md:justify-self-end">#####</h3>
                     </div>
                     <div class="row-span-1 flex md:flex-row-reverse">
                         <img id="merch-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
@@ -235,7 +234,7 @@
             <div class="col-span-1">
                 <div class="grid-rows-2">
                     <div class="row-span-1">
-                        <h3 id="motion-text" class="font-semibold sm:text-5xl md:text-6xl md:justify-self-end">#####</h3>
+                        <h3 id="motion-text" class="font-semibold sm:text-4xl md:text-6xl md:justify-self-end">#####</h3>
                     </div>
                     <div class="row-span-1 flex md:flex-row-reverse">
                         <img id="motion-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
@@ -270,7 +269,7 @@
             <div class="col-span-1">
                 <div class="grid grid-rows-2">
                     <div class="row-span-1">
-                        <h3 id="magazine-text" class="font-semibold sm:text-3xl md:text-5xl md:leading-10 md:justify-self-end md:text-right">#####</h3>
+                        <h3 id="magazine-text" class="font-semibold sm:text-2xl md:text-5xl md:leading-10 md:justify-self-end md:text-right">#####</h3>
                     </div>
                     <div class="row-span-1 flex md:flex-row-reverse">
                         <img id="magazine-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
@@ -294,7 +293,7 @@
         <!-- Social Media Graphics -->
         <div id="socmed" class="grid gap-x-5 gap-y-5 mt-60 pb-48 h-auto sm:grid-cols-1 sm:px-8 md:mx-20 md:grid-cols-3 ">
             <div class="md:col-span-3 md:flex md:items-center">
-                <h3 id="socmed-text" class="text-5xl md:text-6xl font-semibold">#####<br>#####</h3>
+                <h3 id="socmed-text" class="text-4xl md:text-6xl font-semibold">#####</h3>
                 <div class="flex md:flex-none">
                     <img id="socmed-arrow" src="assets/down-right-arrow.png" alt="" class="h-16 justify-self-end">
                     <img id="socmed-arrow" src="assets/down-right-arrow.png" alt="" class="h-16 justify-self-end">
@@ -323,9 +322,9 @@
                 <div id="bg-gradient" class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_#4891CE,_transparent_40%)]"></div>
                     <div class="grid min-h-svh items-center sm:p-4 md:mx-20 md:grid-cols-12">
                         <div class="col-span-6 col-start-2">
-                            <h3 id="cta-header" class="text-6xl font-semibold text-lightMode">Have a project in mind?</h3>
-                            <p class="text-lightMode pt-4 font-light">Let's work together. Every project starts with a conversation.</p>
-                            <a href="https://www.linktr.ee/rvcreates" target="_blank"><button class="w-64 h-auto bg-accentColor text-lightMode font-semibold mt-8 p-6 rounded-[50px]">Let's Talk</button></a>
+                            <h3 id="cta-header" class="text-3xl md:text-6xl font-semibold text-lightMode">Have a project in mind?</h3>
+                            <p id="cta-subtext" class="text-lightMode pt-4 font-light">Let's work together. Every project starts with a conversation.</p>
+                            <a id="cta-button" href="https://www.linktr.ee/rvcreates" target="_blank"><button class="w-64 h-auto bg-accentColor text-lightMode font-semibold mt-8 p-6 rounded-[50px]">Let's Talk</button></a>
                             
                             <div class="col-start-2 col-span-3 flex mt-4">
                                 <img src="assets/up-right-arrow.png" alt="" class="h-16">

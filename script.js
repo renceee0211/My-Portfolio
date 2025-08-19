@@ -40,6 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
       infinite: false,
     });
 
+    // Key integration points
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
 
     function raf(time) {
       lenis.raf(time);
@@ -68,8 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     
 
-    // SplitText
-    document.fonts.ready.then(() => {
+
       // Hero Animations
       let split = new SplitText("#rence, #subtitle", {type: "words"});
     
@@ -83,21 +90,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // CTA SplitText
       let ctasplit = new SplitText('#cta-header', {type: "chars"});
-
-      gsap.timeline({
+      let cta = gsap.timeline ({
         scrollTrigger: {
           trigger: '#cta-section',
-          start: 'top 60$'
-        }
-      }).from(ctasplit.chars, {
-        x: 150,
+          start: 'top 40%'
+        },
+        toggleActions: "play none none none"
+    });
+      cta.from(ctasplit.chars, {
+        y: -80,
         opacity: 0,
         duration: 0.7,
         ease: "power4",
         stagger: 0.04,
       });
 
-    });
+
+      // Explore SplitText
+      let exploresplit = new SplitText('#explore', {type: "chars"});
+      let explore = new gsap.timeline({
+        scrollTrigger: {
+          trigger: '#explore-section',
+          start: 'top 60%',
+          scrub: true,
+        }
+      });
+        
+        explore.from(exploresplit.chars, {
+          y: 150,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power4",
+          stagger: 0.04,
+        })
+
+        .from('#explore-arrow',{
+          opacity: 0,
+        });
 
 
     // CustomEase
@@ -139,19 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
       y: -100, 
       opacity: 0 
     });
-  
 
-    // First section scrolltrigger
-    gsap.to("#hero-section", {
-      scrollTrigger: {
-        trigger: "#about-section",
-        start: "top bottom", // when second section starts entering
-        end: "top top",      // when it reaches the top
-        scrub: true
-      },
-      opacity: 0,
-      scale: 0.9
-    });
 
 
     // Rence Picture Scroll Animation
@@ -360,29 +377,6 @@ document.addEventListener("DOMContentLoaded", () => {
       opacity: 0,
     });
 
-    // explore section bg
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#explore-section',
-        start: 'top 20%',
-        ease: 'hop',
-      }
-    }).to('#explore-bg', { 
-      backgroundColor: '#050505'
-    });
-
-    // explore text
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#explore-section',
-        start: 'top 20%',
-        delay: 0.5,
-        ease: 'hop'
-      }
-    }).to('#explore', { 
-      opacity: 1,
-      color: '#F3F2FA'
-    });
 
       // CTA
     gsap.timeline({
@@ -436,14 +430,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
       // Logo Scramble Text
-      let logotl = gsap.timeline ({
+    let logotl = gsap.timeline ({
       scrollTrigger: {
         trigger: '#logo-design',
         start: 'top 50%',
         toggleActions: "play none none none"
       }
     });
-      logotl.to('#logo-text', {
+    logotl.to('#logo-text', {
         duration: 1.8,
         scrambleText:{
           text: "Logo Designs",
@@ -451,44 +445,35 @@ document.addEventListener("DOMContentLoaded", () => {
           revealDelay: 0.5,
           speed: 1,
         }
-      })
-
-      // .from('.card', {
-      //   opacity: 0,
-      //   y: -50,
-      //   stagger: 0.2
-      // })
-
-      .from('#logo-arrow', {
+    }).from('#logo-arrow', {
           opacity: 0,
           x: -50,
           stagger: 0.3,
       });
-
-
-      let merchtl = gsap.timeline ({
+      
+    let merch = gsap.timeline ({
       scrollTrigger: {
         trigger: '#merch-design',
         start: 'top 50%',
         toggleActions: "play none none none"
       }
     });
-      merchtl.to('#merch-text', {
+    merch.to('#merch-text', {
         duration: 1.8,
         scrambleText:{
-          text: "Merch Designs",
+          text: "Merch Design",
           chars: "x0",
           revealDelay: 0.5,
           speed: 1,
         }
-      })
-
-      .from('#merch-arrow', {
+    }).from('#merch-arrow', {
           opacity: 0,
           x: -50,
           stagger: 0.3,
       });
 
+
+      
       let motiontl = gsap.timeline ({
       scrollTrigger: {
         trigger: '#motion-design',
