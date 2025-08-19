@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "author": "",
+  "author": "Clarence Velasco",
   "license": "ISC",
   "keywords": [],
   "devDependencies": {
@@ -115,6 +115,9 @@
     "wrap-ansi-cjs": "^7.0.0",
     "yaml": "^2.6.1"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "description": "● Added gsap scrollTo function on Navbar. <br>",
   "repository": {
     "type": "git",
@@ -124,4 +127,5 @@
     "url": "https://github.com/renceee0211/My-Portfolio/issues"
   },
   "homepage": "https://github.com/renceee0211/My-Portfolio#readme"
+  
 }
