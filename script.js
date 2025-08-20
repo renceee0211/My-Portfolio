@@ -40,14 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
       infinite: false,
     });
 
-    // Key integration points
-    lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+      // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+      lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.lagSmoothing(0);
+      // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+      // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+      });
+
+      // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+      gsap.ticker.lagSmoothing(0);
+
 
     function raf(time) {
       lenis.raf(time);
@@ -110,9 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
       let exploresplit = new SplitText('#explore', {type: "chars"});
       let explore = new gsap.timeline({
         scrollTrigger: {
-          trigger: '#explore-section',
+          trigger: '#explore',
           start: 'top 60%',
-          scrub: true,
         }
       });
         
@@ -402,71 +406,103 @@ document.addEventListener("DOMContentLoaded", () => {
       opacity: 0,
     });
 
+  let worktogether = new SplitText('#cta-subtext', {type: "chars"});
+    let subtext = gsap.timeline ({
+        scrollTrigger: {
+          trigger: '#cta-subtext',
+          start: 'top 65%'
+        },
+        toggleActions: "play none none none"
+    });
+      subtext.from(worktogether.chars, {
+        opacity: 0,
+        duration: 0.4,
+        ease: "power4",
+        stagger: 0.04,
+    });
+
+
+
     
 
 
     // Poster Scramble Text
-    let postertl = gsap.timeline ({
-      scrollTrigger: {
-        trigger: '#poster-design',
-        start: 'top 50%',
-        toggleActions: "play none none none"
-      }
-    });
-      postertl.to('#poster-text', {
-        duration: 1.8,
-        scrambleText:{
-          text: "Poster Designs",
-          chars: "x0",
-          revealDelay: 0.5,
-          speed: 1,
+      
+      let postertl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#poster-text',
+          start: 'top 50%',
+          toggleActions: "play none none none"
         }
-      })
-
+      });
+        postertl.to('#poster-text', {
+          duration: 1.8,
+          scrambleText:{
+            text: "Poster Design",
+            chars: "x0",
+            revealDelay: 0.5,
+            speed: 1,
+          },
+          ease: "hop"
+        })
+      // 👇 next animations run AFTER scramble finishes
       .from('#poster-arrow', {
           opacity: 0,
           x: -50,
           stagger: 0.3,
-    });
+      });
+
 
       // Logo Scramble Text
-    let logotl = gsap.timeline ({
-      scrollTrigger: {
-        trigger: '#logo-design',
-        start: 'top 50%',
-        toggleActions: "play none none none"
-      }
-    });
-    logotl.to('#logo-text', {
+      let logotl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#logo-text',
+          start: 'top 50%',
+          toggleActions: "play none none none"
+        }
+      });
+
+      logotl.to('#logo-text', {
         duration: 1.8,
         scrambleText:{
-          text: "Logo Designs",
+          text: "Logo Design",
           chars: "x0",
           revealDelay: 0.5,
           speed: 1,
-        }
-    }).from('#logo-arrow', {
+        },
+        ease: "hop"
+      })
+      // 👇 next animations run AFTER scramble finishes
+      .from('#logo-arrow', {
           opacity: 0,
           x: -50,
           stagger: 0.3,
       });
-      
-    let merch = gsap.timeline ({
-      scrollTrigger: {
-        trigger: '#merch-design',
-        start: 'top 50%',
-        toggleActions: "play none none none"
-      }
-    });
-    merch.to('#merch-text', {
+
+
+
+
+      // Merch Scramble Text
+      let merchtl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#merch-text',
+          start: 'top 50%',
+          toggleActions: "play none none none"
+        }
+      });
+
+      merchtl.to('#merch-text', {
         duration: 1.8,
         scrambleText:{
           text: "Merch Design",
           chars: "x0",
           revealDelay: 0.5,
           speed: 1,
-        }
-    }).from('#merch-arrow', {
+        },
+        ease: "hop"
+      })
+      // 👇 next animations run AFTER scramble finishes
+      .from('#merch-arrow', {
           opacity: 0,
           x: -50,
           stagger: 0.3,
@@ -474,13 +510,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       
-      let motiontl = gsap.timeline ({
-      scrollTrigger: {
-        trigger: '#motion-design',
-        start: 'top 50%',
-        toggleActions: "play none none none"
-      }
-    });
+      // Motion Scramble Text
+      let motiontl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#motion-text',
+          start: 'top 50%',
+          toggleActions: "play none none none"
+        }
+      });
+
       motiontl.to('#motion-text', {
         duration: 1.8,
         scrambleText:{
@@ -488,9 +526,10 @@ document.addEventListener("DOMContentLoaded", () => {
           chars: "x0",
           revealDelay: 0.5,
           speed: 1,
-        }
+        },
+        ease: "hop"
       })
-
+      // 👇 next animations run AFTER scramble finishes
       .from('#motion-arrow', {
           opacity: 0,
           x: -50,
@@ -498,23 +537,26 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
 
-      let magtl = gsap.timeline ({
-      scrollTrigger: {
-        trigger: '#magazine',
-        start: 'top 50%',
-        toggleActions: "play none none none"
-      }
-    });
+      // Magazine Scramble Text
+      let magtl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#magazine-text',
+          start: 'top 50%',
+          toggleActions: "play none none none"
+        }
+      });
+
       magtl.to('#magazine-text', {
         duration: 1.8,
         scrambleText:{
-          text: "Magazines/Newsletters",
+          text: "Magazine/Newsletters",
           chars: "x0",
           revealDelay: 0.5,
           speed: 1,
-        }
+        },
+        ease: "hop"
       })
-
+      // 👇 next animations run AFTER scramble finishes
       .from('#magazine-arrow', {
           opacity: 0,
           x: -50,
@@ -522,13 +564,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
 
-      let socmedtl = gsap.timeline ({
-      scrollTrigger: {
-        trigger: '#socmed',
-        start: 'top 50%',
-        toggleActions: "play none none none"
-      }
-    });
+     // SocMed Scramble Text
+      let socmedtl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#socmed-text',
+          start: 'top 50%',
+          toggleActions: "play none none none"
+        }
+      });
+
       socmedtl.to('#socmed-text', {
         duration: 1.8,
         scrambleText:{
@@ -536,9 +580,10 @@ document.addEventListener("DOMContentLoaded", () => {
           chars: "x0",
           revealDelay: 0.5,
           speed: 1,
-        }
+        },
+        ease: "hop"
       })
-
+      // 👇 next animations run AFTER scramble finishes
       .from('#socmed-arrow', {
           opacity: 0,
           x: -50,
