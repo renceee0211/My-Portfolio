@@ -485,7 +485,6 @@ function initGSAP() {
         scrollTrigger: {
           trigger: '#merch-text',
           start: 'top 50%',
-          markers: true,
           toggleActions: "play none none none"
         }
       });
