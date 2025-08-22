@@ -6,28 +6,12 @@ import { SplitText } from "gsap/SplitText";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import Lenis from 'lenis';
 
-
-document.querySelectorAll(".nav-btn .fill").forEach(el => {
-      el.classList.add("bg-blue-500"); // Tailwind color
-    });
-
-    document.querySelectorAll(".nav-btn").forEach(btn => {
-      const fill = btn.querySelector(".fill");
-      btn.addEventListener("mouseenter", () => {
-        gsap.to(fill, { y: 0, duration: 0.3, ease: "hop" });
-        gsap.to(btn,  { scale: 1.1, duration: 0.2, ease: "hop" });
-      });
-      btn.addEventListener("mouseleave", () => {
-        gsap.to(fill, { y: "100%", duration: 0.3, ease: "hop" });
-        gsap.to(btn,  { scale: 1, duration: 0.2, ease: "hop" });
-      });
-    });
-
-document.addEventListener("DOMContentLoaded", () => {
   // Register GSAP plugins
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText, ScrambleTextPlugin, CustomEase);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText, ScrambleTextPlugin, CustomEase);
 
-    // Lenis
+  
+
+// Lenis
     const lenis = new Lenis({
       duration: 1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
@@ -61,83 +45,351 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(raf);
     // End of Lenis
 
-    // ScrollTo
-    document.querySelectorAll("#arrow-button, #aboutBtn").forEach((btn, index) => {
-        btn.addEventListener("click", () => {
-          gsap.to(window, {duration: 1, scrollTo:"#about-section", ease:'hop'});
-        });
-      });
 
-    document.querySelectorAll("#workBtn").forEach((btn, index) => {
-        btn.addEventListener("click", () => {
-          gsap.to(window, {duration: 1, scrollTo:"#explore-section", ease:'hop'});
-        });
-      });
 
-    document.querySelectorAll("#contactBtn").forEach((btn, index) => {
-        btn.addEventListener("click", () => {
-          gsap.to(window, {duration: 1, scrollTo:"#cta-section", ease:'hop'});
-        });
-      });
+
+
+
+
+// Hero section
     
+// Parallax
+    function initPosterGallery() {
+        const heroSection = document.querySelector('#hero-section');
+        
+        // Single layer with your poster designs (6 posters)
+        const posterConfig = {
+            images: [
+                '/assets/gwen.jpg',
+                '/assets/maloi.jpg',
+                '/assets/yulo.jpg',
+                '/assets/bianca.jpg',
+                '/assets/michelle.jpg',
+                '/assets/wakanda.jpg'
+            ],
+            className: 'opacity-15 hover:opacity-30 transition-opacity duration-300',
+            // Custom sizes for different breakpoints
+            sizes: {
+                mobile: { width: '64px', height: 'auto' },    // 16 * 4px
+                tablet: { width: '96px', height: 'auto' },    // 24 * 4px  
+                desktop: { width: '240px', height: 'auto' }  // 32 * 4px
+            },
+            speed: 0.6,
+            zIndex: 0
+        };
+        
+        // Optimized positions for 6 posters with depth layers
+        const positions = [
+            { left: '8%', top: '15%', layer: 'far' },      // Top left - far layer
+            { left: '80%', top: '20%', layer: 'close' },   // Top right - close layer
+            { left: '5%', top: '65%', layer: 'mid' },      // Bottom left - mid layer
+            { left: '76%', top: '65%', layer: 'far' },     // Bottom right - far layer
+            { left: '15%', top: '75%', layer: 'close' },   // Bottom center-left - close layer
+            { left: '63%', top: '45%', layer: 'mid' }      // Middle right - mid layer
+        ];
 
+        // Define depth layers with different movement intensities
+        const depthLayers = {
+            far: {
+                intensity: 40,        // Subtle movement
+                speed: 0.8,
+                scale: 0.85,         // Slightly smaller
+                opacity: 1,
+                blur: '1px'
+            },
+            mid: {
+                intensity: 60,       // Medium movement
+                speed: 0.6,
+                scale: 1.0,          // Normal size
+                opacity: 1,
+                blur: '0.5px'
+            },
+            close: {
+                intensity: 80,      // Strong movement
+                speed: 0.4,
+                scale: 1.15,         // Slightly larger
+                opacity: 1,
+                blur: '0px'
+            }
+        };
+        
+        // Create poster elements with layered effects
+        posterConfig.images.forEach((imageSrc, i) => {
+            const container = document.createElement('div');
+            container.className = 'poster-element absolute pointer-events-none will-change-transform';
+            container.style.zIndex = posterConfig.zIndex;
+            
+            // Get position and layer info
+            const posData = positions[i % positions.length];
+            const layerData = depthLayers[posData.layer];
+            
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.className = 'object-contain';
+            img.alt = `Poster design ${i + 1}`;
+            img.loading = 'lazy';
+            
+            // Apply layer-specific styling
+            container.style.opacity = layerData.opacity;
+            container.style.transform = `scale(${layerData.scale})`;
+            container.style.filter = `blur(${layerData.blur}) drop-shadow(0 4px 8px rgba(0,0,0,0.1))`;
+            
+            // Store layer data for movement calculations
+            container.dataset.layer = posData.layer;
+            
+            // Apply sizes directly to image
+            const applySize = () => {
+                const screenWidth = window.innerWidth;
+                let size;
+                
+                if (screenWidth >= 1024) {
+                    size = posterConfig.sizes.desktop;
+                } else if (screenWidth >= 768) {
+                    size = posterConfig.sizes.tablet;
+                } else {
+                    size = posterConfig.sizes.mobile;
+                }
+                
+                img.style.width = size.width;
+                img.style.height = size.height;
+            };
+            
+            // Apply initial size
+            applySize();
+            
+            // Update size on window resize
+            window.addEventListener('resize', applySize);
+            
+            container.appendChild(img);
+            
+            // Apply positioning (excluding layer property)
+            const { layer, ...pos } = posData;
+            Object.assign(container.style, pos);
+            
+            heroSection.appendChild(container);
+            
+            // Initial state - hide poster
+            gsap.set(container, { 
+              opacity: 0,
+              scale: 0.5
+            });
 
-      // Hero Animations
-      let split = new SplitText("#rence, #subtitle", {type: "words"});
+            // Fade in animation with stagger
+            gsap.to(container, {
+                opacity: layerData.opacity, // Use the layer's target opacity
+                duration: 1.5,
+                scale: 1,
+                delay: i * 0.2, // Stagger each poster by 0.2 seconds
+                ease: "power2.out"
+            });
+
+            console.log(`Created poster ${i + 1} with layer: ${posData.layer}`); // Debug log
+
+            // Create subtle black overlay for better text contrast
+            const overlay = document.createElement('div');
+            overlay.className = 'poster-overlay absolute inset-0 pointer-events-none';
+            overlay.style.cssText = `
+                background: linear-gradient(135deg, 
+                    rgba(0, 0, 0, 0.3) 0%, 
+                    rgba(0, 0, 0, 0.1) 50%, 
+                    rgba(0, 0, 0, 0.2) 100%
+                );
+                z-index: 5;
+                backdrop-filter: blur(0.5px);
+            `;
+            
+            heroSection.appendChild(overlay);
+            
+            // Fade in the overlay
+            gsap.set(overlay, { opacity: 0 });
+            gsap.to(overlay, {
+                opacity: 1,
+                duration: 2,
+                delay: 1,
+                ease: "power2.out"
+            });
+        });
+        
+            // Create individual quickTo functions for each layer
+            const layerQuickTos = {};
+            
+            Object.keys(depthLayers).forEach(layerName => {
+                const layerData = depthLayers[layerName];
+                layerQuickTos[layerName] = {
+                    x: gsap.quickTo(`.poster-element[data-layer="${layerName}"]`, "x", { 
+                        duration: layerData.speed, 
+                        ease: "power3.out" 
+                    }),
+                    y: gsap.quickTo(`.poster-element[data-layer="${layerName}"]`, "y", { 
+                        duration: layerData.speed, 
+                        ease: "power3.out" 
+                    }),
+                    rotation: gsap.quickTo(`.poster-element[data-layer="${layerName}"]`, "rotation", { 
+                        duration: layerData.speed * 1.2, 
+                        ease: "power2.out" 
+                    })
+                };
+            });
+          
+        
+            // Layered mouse parallax with different intensities per depth
+            window.addEventListener("mousemove", (e) => {
+                const { clientX, clientY } = e;
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                
+                // Normalized mouse position (-1 to 1)
+                const mouseX = (clientX - centerX) / centerX;
+                const mouseY = (clientY - centerY) / centerY;
+                
+                // Apply different parallax intensity to each layer
+                Object.keys(depthLayers).forEach(layerName => {
+                    const layerData = depthLayers[layerName];
+                    
+                    layerQuickTos[layerName].x(mouseX * layerData.intensity);
+                    layerQuickTos[layerName].y(mouseY * layerData.intensity);
+                    // layerQuickTos[layerName].rotation(mouseX * layerData.rotationIntensity);
+                });
+            });
+    }
     
-      gsap.from(split.words, { 
-        duration: 1, 
+    // Hero elements - no animations, just ensure visibility
+    function initHeroElements() {
+        // Make sure all elements are visible without animations
+        gsap.set(['#rence', '#subtitle', '#crafted-arrow', '#bg-glow'], { 
+            opacity: 1,
+            y: 0,
+            scale: 1
+        });
+
+        gsap.from('#bg-glow-2', {
+            opacity: 0,
+        });
+    }
+    
+    // Arrow interactions
+    function initArrowInteraction() {
+        const arrowButton = document.querySelector('#arrow-button');
+        
+        // Continuous pulse
+        gsap.to(arrowButton, {
+            scale: 1.1,
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "power2.inOut"
+        });
+        
+        // Hover effects
+        arrowButton.addEventListener('mouseenter', () => {
+            gsap.to(arrowButton, {
+                scale: 1.3,
+                rotation: 10,
+                duration: 0.3,
+                ease: "back.out(1.7)"
+            });
+        });
+        
+        arrowButton.addEventListener('mouseleave', () => {
+            gsap.to(arrowButton, {
+                scale: 1.1,
+                rotation: 0,
+                duration: 0.3,
+                ease: "back.out(1.7)"
+            });
+        });
+        
+        arrowButton.addEventListener('click', () => {
+            gsap.to(arrowButton, {
+                scale: 0.9,
+                duration: 0.1,
+                ease: "power2.inOut",
+                yoyo: true,
+                repeat: 1
+            });
+        });
+    }
+
+
+
+
+
+
+
+function initGSAP() {
+  let mm = gsap.matchMedia();
+  
+  // CustomEase
+  CustomEase.create("hop", ".87, 0, .13, 1");
+
+  // Use ResizeObserver to detect layout changes
+  const resizeObserver = new ResizeObserver(() => {
+    ScrollTrigger.refresh();
+  });
+
+  // Observe elements that might change size
+  resizeObserver.observe(document.body);
+
+  mm.add({
+    isDesktop: "(min-width: 1024px)",
+    isMobile: "(max-width: 767px)",
+    reduceMotion: "(prefers-reduced-motion: reduce)"
+  }, (context) => {
+    let { isDesktop, isMobile } = context.conditions;
+
+    // if (reduceMotion) return;
+
+    // Animations for all Devices
+    // Hero Animations
+    let split = new SplitText("#rence, #subtitle", {type: "chars"});
+    
+    gsap.from(split.chars, { 
         opacity: 0,
-        y: 100, 
-        stagger: 0.2,
-        ease: "hop", 
-      });
-
-      // CTA SplitText
-      let ctasplit = new SplitText('#cta-header', {type: "chars"});
-      let cta = gsap.timeline ({
-        scrollTrigger: {
-          trigger: '#cta-section',
-          start: 'top 40%'
-        },
-        toggleActions: "play none none none"
+        y: 60, 
+        duration: 0.7,
+        ease: "power4",
+        stagger: 0.04,
     });
-      cta.from(ctasplit.chars, {
+
+    // CTA SplitText
+    let ctasplit = new SplitText('#cta-header', {type: "chars"});
+    let cta = gsap.timeline ({
+      scrollTrigger: {
+        trigger: '#cta-section',
+        start: 'top 40%'
+      },
+      toggleActions: "play none none none"
+    });
+    cta.from(ctasplit.chars, {
         y: -80,
         opacity: 0,
         duration: 0.7,
         ease: "power4",
         stagger: 0.04,
-      });
+    });
 
 
-      // Explore SplitText
-      let exploresplit = new SplitText('#explore', {type: "chars"});
-      let explore = new gsap.timeline({
-        scrollTrigger: {
-          trigger: '#explore',
-          start: 'top 60%',
-        }
-      });
+    // Explore SplitText
+    let exploresplit = new SplitText('#explore', {type: "chars"});
+    let explore = new gsap.timeline({
+      scrollTrigger: {
+        trigger: '#explore',
+        start: 'top 80%',
+      }
+    });
         
-        explore.from(exploresplit.chars, {
-          y: 150,
-          opacity: 0,
-          duration: 0.7,
-          ease: "power4",
-          stagger: 0.04,
-        })
+    explore.from(exploresplit.chars, {
+      y: 150,
+      opacity: 0,
+      duration: 0.7,
+      ease: "power4",
+      stagger: 0.04,
+    })
 
-        .from('#explore-arrow',{
-          opacity: 0,
-        });
+    .from('#explore-arrow',{
+        opacity: 0,
+    });
 
-
-    // CustomEase
-    CustomEase.create("hop", ".87, 0, .13, 1");
-
-    
-  
     gsap.from('#crafted-arrow', { 
       duration: 0.7, 
       opacity: 0, 
@@ -145,21 +397,12 @@ document.addEventListener("DOMContentLoaded", () => {
       stagger: 0.3 
     });
     
-    gsap.from('#topnav', { 
-      duration: 0.7, 
-      opacity: 0, 
-      ease: 'hop', 
-      stagger: 0.3 
-    });
-
-    gsap.to('#bg-glow', { 
-      duration: 1, 
-      opacity: 1, 
-      ease: 'hop', 
-    });
-
-    
-
+    // gsap.from('#topnav', { 
+    //   duration: 0.7, 
+    //   opacity: 0, 
+    //   ease: 'hop', 
+    //   stagger: 0.3 
+    // });
 
     gsap.timeline({
       scrollTrigger: {
@@ -173,261 +416,10 @@ document.addEventListener("DOMContentLoaded", () => {
       opacity: 0 
     });
 
-
-
-    // Rence Picture Scroll Animation
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '-50% 75%',
-        end: '60% 50%',
-        scrub: true,
-      }
-    }).from('#rencePic', { 
-      x: -200, 
-      opacity: 0 
-    });
-
-    // About Me
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#about-me',
-        start: 'top 80%',
-        end: 'bottom 50%',
-        scrub: true,
-      }
-    }).from('#about-me', { 
-      x: 50, 
-      opacity: 0 
-    });
-
-    // About Text
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#about-text',
-        start: 'top 90%',
-        end: 'bottom 50%',
-        scrub: true,
-      }
-    }).from('#about-text', { 
-      x: 100, 
-      opacity: 0 
-    });
-
-    // Softwares
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: 'top 90%',
-        end: '50% 20%',
-        scrub: true,
-      }
-    }).from('#software', { 
-      scale: 0,
-    });
-
-
-    // BSIT Grad
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '80% 90%',
-        end: '110% 60%',
-        scrub: true,
-      }
-    }).from('#info-1', { 
-      y: 50, 
-      rotation: -10,
-      opacity: 0 
-    });
-
-    // BSIT Grad Arrow
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '80% 90%',
-        end: '125% 70%',
-        scrub: true,
-      }
-    }).from('#arrow-1', { 
-      y: 50,
-      rotation: -35, 
-      opacity: 0 
-    });
-  
-    // Fave Supe
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '50% 90%',
-        end: '100% 70%',
-        scrub: true,
-      }
-    }).from('#info-2', { 
-      y:-50,
-      rotation: -25, 
-      opacity: 0 
-    });
-
-      // Spiderman
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '40% 90%',
-        end: '100% 70%',
-        scrub: true,
-      }
-    }).from('#spiderman', { 
-      y:-50,
-      rotation: 35, 
-      opacity: 0 
-    });
-
-
-    // BINI
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '40% 90%',
-        end: '100% 70%',
-        scrub: true,
-      }
-    }).from('#bini', { 
-      y:50,
-      x:-80,
-      rotation: 35, 
-      opacity: 0 
-    });
-
-    // Aura
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '30% 90%',
-        end: '90% 70%',
-        scrub: true,
-      }
-    }).from('#aura', { 
-      y:20,
-      x:-80,
-      rotation: 35, 
-      opacity: 0 
-    });
-
-    // XG
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '20% 90%',
-        end: '80% 70%',
-        scrub: true,
-      }
-    }).from('#xg', { 
-      x:-100,
-      rotation: -35, 
-      opacity: 0 
-    });
-
-    // AMPM
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: '10% 90%',
-        end: '70% 70%',
-        scrub: true,
-      }
-    }).from('#ampm', { 
-      y:-20,
-      x:-120,
-      rotation: -35, 
-      opacity: 0 
-    });
-
-    // Open-Genre
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#rencePic',
-        start: 'top 90%',
-        end: '60% 70%',
-        scrub: true,
-      }
-    }).from('#open-genre', { 
-      scale: 0,
-      x:-80,
-      rotation: -35, 
-      opacity: 0 
-    });
-
-
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#hero-section',
-        start: 'top top',
-        end: '200% 50%',
-        scrub: true,
-      }
-    }).to('#bg-glow-2', { 
-      opacity: 1,
-    });
-
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#hero-section',
-        start: 'top top',
-        end: '200% 50%',
-        scrub: true,
-      }
-    }).to('#bg-glow', { 
-      opacity: 0,
-    });
-
-
-      // CTA
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#cta-section',
-        start: 'top 20%',
-        end: 'bottom 80%',
-        scrub: true
-      }
-    }).from('#cta-bg', { 
-      opacity: 0,
-    });
-
-    // CTA Glow
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: '#cta-section',
-        start: 'top 50%',
-        end: 'bottom 80%',
-        scrub: true
-      }
-    }).from('#bg-gradient', { 
-      opacity: 0,
-    });
-
-  let worktogether = new SplitText('#cta-subtext', {type: "chars"});
-    let subtext = gsap.timeline ({
-        scrollTrigger: {
-          trigger: '#cta-subtext',
-          start: 'top 65%'
-        },
-        toggleActions: "play none none none"
-    });
-      subtext.from(worktogether.chars, {
-        opacity: 0,
-        duration: 0.4,
-        ease: "power4",
-        stagger: 0.04,
-    });
-
-
-
-    
-
-
     // Poster Scramble Text
-      
+    gsap.set('#poster-text', { 
+        scrambleText: { text: "#######" }
+      });
       let postertl = gsap.timeline({
         scrollTrigger: {
           trigger: '#poster-text',
@@ -443,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
             revealDelay: 0.5,
             speed: 1,
           },
-          ease: "hop"
+          ease: "power4"
         })
       // 👇 next animations run AFTER scramble finishes
       .from('#poster-arrow', {
@@ -454,6 +446,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       // Logo Scramble Text
+      gsap.set('#logo-text', { 
+        scrambleText: { text: "#######" }
+      });
       let logotl = gsap.timeline({
         scrollTrigger: {
           trigger: '#logo-text',
@@ -470,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
           revealDelay: 0.5,
           speed: 1,
         },
-        ease: "hop"
+        ease: "power4"
       })
       // 👇 next animations run AFTER scramble finishes
       .from('#logo-arrow', {
@@ -483,10 +478,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       // Merch Scramble Text
+      gsap.set('#merch-text', { 
+        scrambleText: { text: "#######" }
+      });
       let merchtl = gsap.timeline({
         scrollTrigger: {
           trigger: '#merch-text',
           start: 'top 50%',
+          markers: true,
           toggleActions: "play none none none"
         }
       });
@@ -499,18 +498,19 @@ document.addEventListener("DOMContentLoaded", () => {
           revealDelay: 0.5,
           speed: 1,
         },
-        ease: "hop"
+        ease: "power4"
       })
-      // 👇 next animations run AFTER scramble finishes
+
       .from('#merch-arrow', {
           opacity: 0,
           x: -50,
           stagger: 0.3,
       });
-
-
       
       // Motion Scramble Text
+      gsap.set('#motion-text', { 
+        scrambleText: { text: "#######" }
+      });
       let motiontl = gsap.timeline({
         scrollTrigger: {
           trigger: '#motion-text',
@@ -527,7 +527,7 @@ document.addEventListener("DOMContentLoaded", () => {
           revealDelay: 0.5,
           speed: 1,
         },
-        ease: "hop"
+        ease: "power4"
       })
       // 👇 next animations run AFTER scramble finishes
       .from('#motion-arrow', {
@@ -538,6 +538,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       // Magazine Scramble Text
+      gsap.set('#magazine-text', { 
+        scrambleText: { text: "#######" }
+      });
       let magtl = gsap.timeline({
         scrollTrigger: {
           trigger: '#magazine-text',
@@ -554,7 +557,7 @@ document.addEventListener("DOMContentLoaded", () => {
           revealDelay: 0.5,
           speed: 1,
         },
-        ease: "hop"
+        ease: "power4"
       })
       // 👇 next animations run AFTER scramble finishes
       .from('#magazine-arrow', {
@@ -565,6 +568,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
      // SocMed Scramble Text
+      gsap.set('#socmed-text', { 
+        scrambleText: { text: "#######" }
+      });
       let socmedtl = gsap.timeline({
         scrollTrigger: {
           trigger: '#socmed-text',
@@ -581,7 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
           revealDelay: 0.5,
           speed: 1,
         },
-        ease: "hop"
+        ease: "power4"
       })
       // 👇 next animations run AFTER scramble finishes
       .from('#socmed-arrow', {
@@ -592,7 +598,375 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+    // Desktop animations
+    if (isDesktop) {
+            initPosterGallery();
+            initHeroElements();
+            initArrowInteraction();
+
+
+            // Rence Picture Scroll Animation
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: '-50% 75%',
+                end: '60% 50%',
+                scrub: true,
+              }
+            }).from('#rencePic', { 
+              x: -200, 
+              opacity: 0 
+            });
+
+            // About Me
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#about-me',
+                start: 'top 80%',
+                end: 'bottom 50%',
+                scrub: true,
+              }
+            }).from('#about-me', { 
+              x: 50, 
+              opacity: 0 
+            });
+
+            // About Text
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#about-text',
+                start: 'top 90%',
+                end: 'bottom 50%',
+                scrub: true,
+              }
+            }).from('#about-text', { 
+              x: 100, 
+              opacity: 0 
+            });
+
+            // Softwares
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: 'top 90%',
+                end: '50% 20%',
+                scrub: true,
+              }
+            }).from('#software', { 
+              scale: 0,
+            });
+
+
+            // BSIT Grad
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: '80% 90%',
+                end: '110% 60%',
+                scrub: true,
+              }
+            }).from('#info-1', { 
+              y: 50, 
+              rotation: -10,
+              opacity: 0 
+            });
+
+            // BSIT Grad Arrow
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: '80% 90%',
+                end: '125% 70%',
+                scrub: true,
+              }
+            }).from('#arrow-1', { 
+              y: 50,
+              rotation: -35, 
+              opacity: 0 
+            });
+          
+            // Fave Supe
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: '50% 90%',
+                end: '100% 70%',
+                scrub: true,
+              }
+            }).from('#info-2', { 
+              y:-50,
+              rotation: -25, 
+              opacity: 0 
+            });
+
+              // Spiderman
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: '40% 90%',
+                end: '100% 70%',
+                scrub: true,
+              }
+            }).from('#spiderman', { 
+              y:-50,
+              rotation: 35, 
+              opacity: 0 
+            });
+
+
+            // BINI
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: '40% 90%',
+                end: '100% 70%',
+                scrub: true,
+              }
+            }).from('#bini', { 
+              y:50,
+              x:-80,
+              rotation: 35, 
+              opacity: 0 
+            });
+
+            // Aura
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: '30% 90%',
+                end: '90% 70%',
+                scrub: true,
+              }
+            }).from('#aura', { 
+              y:20,
+              x:-80,
+              rotation: 35, 
+              opacity: 0 
+            });
+
+            // XG
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: '20% 90%',
+                end: '80% 70%',
+                scrub: true,
+              }
+            }).from('#xg', { 
+              x:-100,
+              rotation: -35, 
+              opacity: 0 
+            });
+
+            // AMPM
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: '10% 90%',
+                end: '70% 70%',
+                scrub: true,
+              }
+            }).from('#ampm', { 
+              y:-20,
+              x:-120,
+              rotation: -35, 
+              opacity: 0 
+            });
+
+            // Open-Genre
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#rencePic',
+                start: 'top 90%',
+                end: '60% 70%',
+                scrub: true,
+              }
+            }).from('#open-genre', { 
+              scale: 0,
+              x:-80,
+              rotation: -35, 
+              opacity: 0 
+            });
+
+
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#hero-section',
+                start: 'top top',
+                end: '150% 50%',
+                scrub: true,
+              }
+            }).to('#bg-glow-2', { 
+              opacity: 1,
+            });
+
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#hero-section',
+                start: 'top top',
+                end: '150% 50%',
+                scrub: true,
+              }
+            }).to('#bg-glow', { 
+              opacity: 0,
+            });
+
+
+              // CTA
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#cta-section',
+                start: 'top 20%',
+                end: 'bottom 80%',
+                scrub: true
+              }
+            }).from('#cta-bg', { 
+              opacity: 0,
+            });
+
+            // CTA Glow
+            gsap.timeline({
+              scrollTrigger: {
+                trigger: '#cta-section',
+                start: 'top 50%',
+                end: 'bottom 80%',
+                scrub: true
+              }
+            }).from('#bg-gradient', { 
+              opacity: 0,
+            });
+
+          let worktogether = new SplitText('#cta-subtext', {type: "chars"});
+            let subtext = gsap.timeline ({
+                scrollTrigger: {
+                  trigger: '#cta-subtext',
+                  start: 'top 65%'
+                },
+                toggleActions: "play none none none"
+            });
+              subtext.from(worktogether.chars, {
+                opacity: 0,
+                duration: 0.4,
+                ease: "power4",
+                stagger: 0.04,
+            });
+    } else if (isMobile) {
+            // Simple animations for mobile (no poster gallery to avoid clutter)
+            initHeroElements();
+            initArrowInteraction();
+    }
+            
+  });
+
+          
+} 
+
+// Works whether DOM is already loaded or not
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initGSAP);
+} else {
+  initGSAP();
+}
+
+
+
+
+
+
+
+
+
+    // ScrollTo
+    document.querySelectorAll("#arrow-button, #aboutBtn").forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          gsap.to(window, {duration: 1, scrollTo:"#about-section", ease:'hop'});
+        });
+    });
+
+    document.querySelectorAll("#workBtn").forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          gsap.to(window, {duration: 1, scrollTo:"#explore-section", ease:'hop'});
+        });
+    });
+
+    document.querySelectorAll("#contactBtn").forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          gsap.to(window, {duration: 1, scrollTo:"#cta-section", ease:'hop'});
+        });
+    });
     
 
 
+document.querySelectorAll('#cta-button').forEach(button => {
+  button.addEventListener('mouseenter', () => {
+    gsap.to(button, {
+      scale: 1.1,
+      rotation: 2,
+      duration: 0.3,
+      color: "white",
+      backgroundColor: "#4891CE",
+      ease: "back.out(1.7)"
+    });
+  });
+  
+  button.addEventListener('mouseleave', () => {
+    gsap.to(button, {
+      scale: 1,
+      rotation: 0,
+      duration: 0.3,
+      color: "black",
+      backgroundColor: "white",
+      ease: "back.out(1.7)"
+    });
+  });
+  
+  // Magnetic follow effect
+  button.addEventListener('mousemove', (e) => {
+    const rect = button.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    
+    gsap.to(button, {
+      x: x * 0.1,
+      y: y * 0.1,
+      duration: 0.3
+    });
+  });
 });
+
+
+const ctaTl = gsap.timeline({ 
+  scrollTrigger: {
+    trigger: '#cta-button',
+    start: 'top 70%'
+  }
+});
+
+ctaTl
+  .set('#cta-button', { 
+    transformPerspective: 1000,
+    transformStyle: "preserve-3d" 
+  })
+  .from('#cta-button', {
+    rotationY: -90,
+    opacity: 0,
+    duration: 1,
+    ease: "back.out(1.7)"
+  })
+  .to('#cta-button', {
+    scrambleText: {
+      text: "Let's Talk!",
+      chars: "lowerCase",
+      revealDelay: 0.3
+    },
+    duration: 1.5
+  }, "-=0.5");
+
+
+
+
+
+  // Navbar Animation
+
+  

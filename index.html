@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/6372763a06.js" crossorigin="anonymous"></script>
-    <script  type="module" src="script.js"></script>
+    
 </head>
 
 
@@ -47,29 +47,34 @@
             <div id="navButtons" class="md: flex flex-row space-x-12">
                 <div>
                     <a class="nav-btn relative inline-block px-2 py-1" id="aboutBtn" href="#">
-                        <span class="label relative z-10">About</span> 
+                        <span class="label relative z-10 font-semibold">About</span> 
                         <span class="fill absolute inset-0 translate-y-full z-10"></span>
                     </a>
                 </div>
                 <div>
-                    <a class="nav-btn relative inline-block px-2 py-1" id="workBtn" href="#"><span class="label relative z-10"> Work</span>
-                        <span class="fill absolute inset-0 translate-y-full z-10"></span></a>
+                    <a class="nav-btn relative inline-block px-2 py-1" id="workBtn" href="#">
+                        <span class="label relative z-10 font-semibold"> Work</span>
+                        <span class="fill absolute inset-0 translate-y-full z-10"></span>
+                    </a>
                 </div>
                 <div>
-                    <a class="nav-btn relative inline-block px-2 py-1" id="contactBtn" href="#"><span class="label relative z-10">Let's Talk</span>
-                    <span class="fill absolute inset-0 translate-y-full z-10"></span></a>
+                    <a class="nav-btn relative inline-block px-2 py-1" id="contactBtn" href="#">
+                        <span class="label relative z-10 font-semibold">Let's Talk</span>
+                        <span class="fill absolute inset-0 translate-y-full z-10"></span>
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <section id="hero-section" class="relative h-max bg-darkMode">
+    
 
-            <div id="bg-glow" class="absolute w-auto inset-0 bg-[radial-gradient(circle_at_50%_-20%,#2B32B2,transparent_60%)]"></div>
-            <div id="bg-glow-2" class="absolute w-auto inset-0 bg-[radial-gradient(circle_at_50%_100%,#1488CC,transparent_50%)] opacity-0"></div>
+            <div id="bg-glow" class="absolute z-10 w-auto inset-0 bg-[radial-gradient(circle_at_50%_-20%,#2B32B2,transparent_60%)]"></div>
+            <div id="bg-glow-2" class="absolute z-10 w-auto inset-0 bg-[radial-gradient(circle_at_50%_100%,#1488CC,transparent_50%)] opacity-0"></div>
             
             <!-- Hero Section -->
-            <div class="relative h-svh top-40 sm:p-4 sm:mx-0 md:mx-20 md:p-6 place-items-center ">
+            <div class="relative z-10 h-svh top-40 sm:p-4 sm:mx-0 md:mx-20 md:p-6 place-items-center ">
                 <h1 id="rence" class="font-extrabold text-lightMode text-3xl md:text-6xl">I'm Clarence Velasco</h1>
                 <h1 id="subtitle" class="font-extrabold text-lightMode text-3xl mt-4 text-center md:text-6xl">A <span class="font-serif font-bold italic">Multimedia Artist</span> and a <span class="font-serif font-bold italic">Web Developer</span></h1>
 
@@ -170,7 +175,7 @@
             <div class="col-span-1">
                 <div class="grid-rows-2">
                     <div class="row-span-1">
-                        <h3 id="logo-text" class=" font-semibold sm:text-4xl md:text-6xl md:justify-self-end">#####</h3>
+                        <h3 id="logo-text" class=" font-semibold sm:text-4xl md:text-6xl md:justify-self-end"></h3>
                     </div>
                     <div class="row-span-1 flex md:flex-row-reverse">
                         <img id="logo-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
@@ -324,7 +329,7 @@
                         <div class="col-span-6 col-start-2 flex flex-col ">
                             <h3 id="cta-header" class="text-3xl md:text-6xl font-semibold text-lightMode">Have a project in mind?</h3>
                             <p id="cta-subtext" class="text-lightMode pt-4 font-light">Every project starts with a conversation.</p>
-                            <a id="cta-button" class="w-48 md:w-64 text-center bg-accentColor text-lightMode font-semibold mt-8 px-8 py-6 rounded-[50px]" href="https://www.linktr.ee/rvcreates" target="_blank">Let's Talk</a>
+                            <a id="cta-button" class="w-48 md:w-64 text-center bg-white text-darkMode font-semibold mt-8 px-8 py-6 rounded-[50px]" href="https://www.linktr.ee/rvcreates" target="_blank">Let's Talk</a>
                             
                             <div class="col-start-2 col-span-3 flex mt-4">
                                 <img src="assets/up-right-arrow.png" alt="" class="h-16">
@@ -401,5 +406,8 @@
             </div>
         </div>
     </section>
+
+
+    <script  type="module" src="script.js"></script>
 </body>
 </html>
