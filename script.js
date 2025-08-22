@@ -45,7 +45,275 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText, ScrambleTextPlugin
     requestAnimationFrame(raf);
     // End of Lenis
 
+// Preloader
+class PortfolioPreloader {
+            constructor() {
+                this.assets = {
+                    fonts: [
+                        'https://fonts.cdnfonts.com/css/general-sans',
+                        'https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap',
+                        'https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap',
+                        // Icon Libraries
+                        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
+                        'https://kit.fontawesome.com/6372763a06.js'
+                    ],
+                    images: [
+                        '/assets/gwen.jpg',
+                        '/assets/maloi.jpg',
+                        '/assets/yulo.jpg',
+                        '/assets/bianca.jpg',
+                        '/assets/michelle.jpg',
+                        '/assets/wakanda.jpg'
+                    ],
+                    // videos: [
+                    //     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                    //     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+                    //     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+                    //     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+                    //     'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'
+                    // ]
+                };
+                
+                // Add GSAP and Tailwind to the assets
+                this.assets.scripts = [
+                    'https://cdn.tailwindcss.com',
+                    'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js'
+                ];
+                
+                this.loadedCount = 0;
+                this.totalAssets = this.assets.fonts.length + this.assets.images.length + this.assets.scripts.length;
+                
+                this.elements = {
+                    preloader: document.getElementById('preloader'),
+                    mainContent: document.getElementById('mainContent'),
+                    progressBar: document.getElementById('progressBar'),
+                    percentage: document.getElementById('percentage'),
+                    loadingText: document.getElementById('loadingText'),
+                    currentAsset: document.getElementById('currentAsset'),
+                    totalAssets: document.getElementById('totalAssets'),
+                    loadingContainer: document.getElementById('loadingContainer'),
+                    logoContainer: document.getElementById('logoContainer')
+                };
+                
+                this.loadingMessages = [
+                    'Loading fonts...',
+                    'Preparing images...',
+                    'Loading videos...',
+                    'Initializing scripts...',
+                    'Almost ready...',
+                    'Finalizing...'
+                ];
+                
+                this.init();
+            }
 
+            init() {
+                // Set total assets count
+                this.elements.totalAssets.textContent = this.totalAssets;
+                
+                // Initialize GSAP animations
+                this.initAnimations();
+                
+                // Start loading assets
+                this.loadAssets();
+            }
+
+            initAnimations() {
+                // Entrance animation for loading container
+                gsap.fromTo(this.elements.loadingContainer, 
+                    { y: 50, opacity: 0, scale: 0.9 },
+                    { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" }
+                );
+
+                // Continuous rotation for loader
+                gsap.to('.loader-ring', {
+                    rotation: 360,
+                    duration: 1,
+                    repeat: -1,
+                    ease: "none"
+                });
+
+                // Floating particles animation
+                gsap.utils.toArray('.particle').forEach((particle, i) => {
+                    gsap.set(particle, {
+                        x: Math.random() * window.innerWidth,
+                        y: Math.random() * window.innerHeight,
+                    });
+                    
+                    gsap.to(particle, {
+                        y: "-=100",
+                        x: "+=50",
+                        duration: 3 + Math.random() * 4,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: "sine.inOut",
+                        delay: Math.random() * 2
+                    });
+                });
+            }
+
+            updateProgress() {
+                this.loadedCount++;
+                const progress = Math.round((this.loadedCount / this.totalAssets) * 100);
+                
+                // Animate progress bar
+                gsap.to(this.elements.progressBar, {
+                    width: progress + '%',
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+                
+                // Update text with animation
+                gsap.to(this.elements.percentage, {
+                    innerHTML: progress + '%',
+                    duration: 0.2,
+                    ease: "none"
+                });
+                
+                // Update current asset count
+                this.elements.currentAsset.textContent = this.loadedCount;
+                
+                // Update loading message
+                const messageIndex = Math.min(Math.floor((progress / 100) * this.loadingMessages.length), this.loadingMessages.length - 1);
+                if (this.elements.loadingText.textContent !== this.loadingMessages[messageIndex]) {
+                    gsap.to(this.elements.loadingText, {
+                        opacity: 0,
+                        duration: 0.2,
+                        onComplete: () => {
+                            this.elements.loadingText.textContent = this.loadingMessages[messageIndex];
+                            gsap.to(this.elements.loadingText, {
+                                opacity: 0.9,
+                                duration: 0.2
+                            });
+                        }
+                    });
+                }
+                
+                if (this.loadedCount === this.totalAssets) {
+                    setTimeout(() => this.hidePreloader(), 800);
+                }
+            }
+
+            loadFonts() {
+                this.assets.fonts.forEach(fontUrl => {
+                    const link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = fontUrl;
+                    link.onload = () => this.updateProgress();
+                    link.onerror = () => this.updateProgress();
+                    document.head.appendChild(link);
+                });
+            }
+
+            loadImages() {
+                this.assets.images.forEach(imageSrc => {
+                    const img = new Image();
+                    img.onload = () => this.updateProgress();
+                    img.onerror = () => this.updateProgress();
+                    img.src = imageSrc;
+                });
+            }
+
+            // loadVideos() {
+            //     this.assets.videos.forEach(videoSrc => {
+            //         const video = document.createElement('video');
+            //         video.preload = 'metadata';
+            //         video.onloadedmetadata = () => this.updateProgress();
+            //         video.onerror = () => this.updateProgress();
+            //         video.src = videoSrc;
+            //     });
+            // }
+
+            loadScripts() {
+                // For demonstration - these are already loaded, so we'll simulate
+                this.assets.scripts.forEach(() => {
+                    setTimeout(() => this.updateProgress(), Math.random() * 1000);
+                });
+            }
+
+            loadAssets() {
+                this.loadFonts();
+                this.loadImages();
+                // this.loadVideos();
+                this.loadScripts();
+            }
+
+            hidePreloader() {
+                // Success animation sequence
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        this.showMainContent();
+                    }
+                });
+
+                // Scale and fade out the loading container
+                tl.to(this.elements.loadingContainer, {
+                    scale: 0.9,
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: "power2.in"
+                })
+                // Slide preloader up and fade out
+                .to(this.elements.preloader, {
+                    y: "-100%",
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.inOut"
+                }, "-=0.2");
+            }
+
+            showMainContent() {
+                // Show main content with staggered animation
+                gsap.set(this.elements.mainContent, { opacity: 1, visibility: 'visible' });
+                
+                // const tl = gsap.timeline();
+                
+                // tl.fromTo(this.elements.mainContent.querySelector('h1'),
+                //     { y: 100, opacity: 0 },
+                //     { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+                // )
+                // .fromTo(this.elements.mainContent.querySelector('p'),
+                //     { y: 50, opacity: 0 },
+                //     { y: 0, opacity: 0.8, duration: 0.8, ease: "power2.out" },
+                //     "-=0.5"
+                // )
+                // .fromTo(this.elements.mainContent.querySelector('button'),
+                //     { y: 30, opacity: 0, scale: 0.9 },
+                //     { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" },
+                //     "-=0.3"
+                // );
+
+                // Add debugging
+                  console.log('Main content should now be visible');
+                  
+                  // Small delay to ensure visibility is set, then call animations
+                  setTimeout(() => {
+                      // Call your existing initGSAP function if it exists
+                      if (typeof window.initGSAP === 'function') {
+                          console.log('Calling initGSAP function');
+                          window.initGSAP();
+                      } else if (typeof initGSAP === 'function') {
+                          console.log('Calling global initGSAP function');
+                          initGSAP();
+                      } else {
+                          console.log('initGSAP function not found, using fallback animations');
+                          // Fallback animations if initGSAP doesn't exist
+                          this.fallbackAnimations();
+                      }
+                  }, 100);
+                  
+                  // Remove preloader from DOM after animation
+                  setTimeout(() => {
+                      if (this.elements.preloader) {
+                          this.elements.preloader.style.display = 'none';
+                      }
+                  }, 2000);
+
+
+            }
+        }
+        
+        
 
 
 
@@ -273,11 +541,11 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, SplitText, ScrambleTextPlugin
         
         // Continuous pulse
         gsap.to(arrowButton, {
-            scale: 1.1,
+            scale: 1.2,
             duration: 1.5,
             repeat: -1,
             yoyo: true,
-            ease: "power2.inOut"
+            ease: "power4"
         });
         
         // Hover effects
@@ -392,9 +660,10 @@ function initGSAP() {
 
     gsap.from('#crafted-arrow', { 
       duration: 0.7, 
+      y: 80,
       opacity: 0, 
+      stagger: 0.7,
       ease: 'hop', 
-      stagger: 0.3 
     });
     
     // gsap.from('#topnav', { 
@@ -861,12 +1130,7 @@ function initGSAP() {
           
 } 
 
-// Works whether DOM is already loaded or not
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initGSAP);
-} else {
-  initGSAP();
-}
+
 
 
 
@@ -964,8 +1228,41 @@ ctaTl
 
 
 
+// Make it available globally for the preloader
+window.initGSAP = initGSAP;
 
 
-  // Navbar Animation
+
+
+
+ // Initialize preloader when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new PortfolioPreloader();
+        });
+
+        // Fallback: Hide preloader after 15 seconds
+        setTimeout(() => {
+            const preloader = document.getElementById('preloader');
+            const mainContent = document.getElementById('mainContent');
+            if (preloader && !preloader.classList.contains('hidden')) {
+                gsap.to(preloader, { opacity: 0, duration: 0.5 });
+                gsap.set(mainContent, { opacity: 1, visibility: 'visible' });
+            }
+        }, 15000);
+
+
+
+        // Only run automatically if there's no preloader
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!document.getElementById('preloader')) {
+            initGSAP();
+        }
+    });
+} else {
+    if (!document.getElementById('preloader')) {
+        initGSAP();
+    }
+}
 
   

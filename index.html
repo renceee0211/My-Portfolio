@@ -20,394 +20,417 @@
 
 
 <body class="font-family:sans overflow-y-scroll w-full bg-darkMode select-none">
-    
-        <!-- Screen size guide -->
-        <!-- <div id="screenSize"
-            class="fixed bottom-2 right-2 bg-black text-white text-xs px-3 py-1 rounded z-50 pointer-events-none max-w-[90vw]">
-        </div>
 
-        <script>
-            function updateScreenSize() {
-                const w = window.innerWidth;
-                const h = window.innerHeight;
-                document.getElementById("screenSize").innerText = `${w} x ${h}`;
-            }
-
-            window.addEventListener("resize", updateScreenSize);
-            window.addEventListener("DOMContentLoaded", updateScreenSize);
-        </script> -->
-        <!-- End of Screen Size guide -->
-
-    <!-- Navigation Bar -->
-    <nav id="topnav" class=" bg-lightMode w-auto h-auto drop-shadow-xl z-50 sm:py-4 md:p-6">
-        <div id="navElements" class="md:flex flex-row justify-between place-items-center">
-            <div id="site-logo" class="text-center sm:pb-4 md:pb-0">
-                <a href="#"><h6 class="font-semibold">Clarence Velasco</h6></a>
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center gradient-bg">
+        <!-- Loading Container -->
+        <div id="loadingContainer" class="glass rounded-3xl p-8 md:p-12 mx-4 max-w-md w-full text-center">
+            <!-- Animated Logo/Icon -->
+            <div id="logoContainer" class="mb-8">
+                <div class="loader-ring mx-auto"></div>
             </div>
-            <div id="navButtons" class="md: flex flex-row space-x-12">
-                <div>
-                    <a class="nav-btn relative inline-block px-2 py-1" id="aboutBtn" href="#">
-                        <span class="label relative z-10 font-semibold">About</span> 
-                        <span class="fill absolute inset-0 translate-y-full z-10"></span>
-                    </a>
-                </div>
-                <div>
-                    <a class="nav-btn relative inline-block px-2 py-1" id="workBtn" href="#">
-                        <span class="label relative z-10 font-semibold"> Work</span>
-                        <span class="fill absolute inset-0 translate-y-full z-10"></span>
-                    </a>
-                </div>
-                <div>
-                    <a class="nav-btn relative inline-block px-2 py-1" id="contactBtn" href="#">
-                        <span class="label relative z-10 font-semibold">Let's Talk</span>
-                        <span class="fill absolute inset-0 translate-y-full z-10"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <section id="hero-section" class="relative h-max bg-darkMode">
-    
-
-            <div id="bg-glow" class="absolute z-10 w-auto inset-0 bg-[radial-gradient(circle_at_50%_-20%,#2B32B2,transparent_60%)]"></div>
-            <div id="bg-glow-2" class="absolute z-10 w-auto inset-0 bg-[radial-gradient(circle_at_50%_100%,#1488CC,transparent_50%)] opacity-0"></div>
             
-            <!-- Hero Section -->
-            <div class="relative z-10 h-svh top-40 sm:p-4 sm:mx-0 md:mx-20 md:p-6 place-items-center ">
-                <h1 id="rence" class="font-extrabold text-lightMode text-3xl md:text-6xl">I'm Clarence Velasco</h1>
-                <h1 id="subtitle" class="font-extrabold text-lightMode text-3xl mt-4 text-center md:text-6xl">A <span class="font-serif font-bold italic">Multimedia Artist</span> and a <span class="font-serif font-bold italic">Web Developer</span></h1>
-
-                <div id="crafted-arrow" class="absolute grid bottom-[30%] place-items-center z-50">
-                    <p class="text-lightMode">Crafted with Code and Creativity</p>
-                    <button id="arrow-button" class="mt-3 text-lightMode"><i class="fa-solid fa-circle-arrow-down text-2xl"></i></button>
+            <!-- Progress Section -->
+            <div id="progressSection" class="mb-6">
+                <div class="w-full bg-white bg-opacity-20 rounded-full h-2 mb-4 overflow-hidden">
+                    <div id="progressBar" class="progress-gradient h-full rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
                 </div>
-            </div>  
-    </section>
-
-    <section id="about-section" class="relative bg-lightMode ">
-        <!-- About Container -->
-        <div class="grid sm:grid-cols-1 sm:mx-0 sm:px-4 sm:py-32  md:grid-cols-2 md:relative md:mx-20 md:p-12 md:h-svh ">
-            <div id="image" class="relative grid place-content-center sm:py-32 md:col-span-1 ">
-                <!-- Grad pic -->
-                <img id="rencePic" src="assets/clarence.jpg" alt="Clarence Velasco" class="drop-shadow-lg rounded-[15px] sm:w-[250px] md:w-[438px]" loading="lazy">
-                <!-- A BSIT Grad! -->
-                <p id="info-1" class="absolute font-handwrite font-bold text-darkMode sm:rotate-[5deg] sm:text-l sm:bottom-[8%] sm:left-[67%] md:rotate-[-10deg] md:text-2xl md:bottom-[10%] md:left-[75%]">A BSIT Grad</p>
-                <img id="arrow-1" src="assets/arrow.png" alt="" class="absolute sm:w-12 sm:bottom-[13%] sm:left-[78%] md:rotate-[-15deg] md:w-20 md:bottom-[15%] md:left-[78%] ">
-
-                <!-- Spiderman -->
-                <p id="info-2" class="absolute font-handwrite font-bold text-darkMode sm:rotate-[-6deg] sm:top-[13%] sm:left-[66%] md:text-xl md:rotate-[-15deg] md:top-[11%] md:left-[65%]">Fave Supe</p>
-                <img id="spiderman" src="assets/spiderman.png" alt="" class="absolute sm:w-16 sm:rotate-[13deg] sm:top-[18%] sm:left-[70%] md:w-24 md:top-[15%] md:left-[68%] md:rotate-[15deg]">
-
-                <!-- Fave Albums -->
-                <p id="open-genre" class="absolute font-handwrite font-bold text-darkMode sm:text-sm sm:rotate-[-4deg] sm:bottom-[8%] sm:left-[10%] md:text-l md:rotate-[7deg] md:top-[43%] md:left-[2%]">An Open-Genre Person!</p>
-                <img id="bini" src="assets/bini.jpg" alt="" class="absolute sm:z-30 rounded-[5px] sm:w-14 sm:rotate-[6deg] sm:bottom-[20%] sm:left-[35%] md:z-30 md:w-28 md:bottom-[15%] md:left-[24%]  md:rotate-[10deg] md:rounded-[10px]">
-                <img id="aura" src="assets/aura.png" alt="" class="absolute sm:z-20 sm:rounded-[5px] sm:w-14 sm:rotate-[-6deg] sm:bottom-[18%] sm:left-[25%] md:z-20 md:w-28 md:bottom-[23%] md:left-[13%] md:rotate-[4deg] md:rounded-[10px]">
-                <img id="xg" src="assets/xg.jpg" alt="" class="absolute sm:z-10 sm:rounded-[5px] sm:w-14 sm:rotate-[6deg] sm:bottom-[20%] sm:left-[16%] md:z-10 md:w-28 md:bottom-[33%] md:left-[16%] md:rotate-[-8deg] md:rounded-[10px]">
-                <img id="ampm" src="assets/ampm.jpg" alt="" class="absolute sm:z-0 sm:rounded-[5px] sm:w-14 sm:rotate-[-6deg] sm:bottom-[23%] sm:left-[10%] md:w-28 md:bottom-[38%] md:left-[8%] md:rotate-[-4deg] md:rounded-[10px]">
+                
+                <div class="flex justify-between items-center text-white text-sm">
+                    <span id="loadingText" class="font-medium opacity-90">Loading portfolio...</span>
+                    <span id="percentage" class="font-semibold">0%</span>
+                </div>
             </div>
-
-            <div class="relative grid content-center col-span-1 md:mx-0 ">
-                <!-- Softwares -->
-                <img id="software" src="assets/photoshop.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[20%] md:w-16 md:bottom-[25%] md:left-[35%]">
-                <img id="software" src="assets/illustrator.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[35%] md:w-16 md:bottom-[25%] md:left-[45%]">
-                <img id="software" src="assets/after-effects.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[50%] md:w-16 md:bottom-[25%] md:left-[55%]">
-                <img id="software" src="assets/blender.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[65%] md:w-16 md:bottom-[25%] md:left-[65%]">
-                <p id="software" class="absolute font-handwrite font-bold text-darkMode sm:text-base sm:bottom-[-18%] sm:left-[23%] md:text-lg md:bottom-[21%] md:left-[42%]">Softwares I mainly use!</p>
-
-                <!-- About Me -->
-                <div class="w-full max-w-full overflow-hidden">
-                    <h1 id="about-me" class="font-semibold py-4 sm:text-3xl md:text-4xl ">About Me</h1>
-                    <p id="about-text" class="sm:leading-9 md:text-lg md:leading-8">Since 2016, I have been immersed in the world of creativity. Starting with capturing and editing photos on my smartphone, I discovered a spark within me, and opportunities began to open one after another. My passion for tech and multimedia has built a strong foundation and brought me to where I am today. A mix of technical and creative skills—along with my love for pop culture, movies and video games—is what truly helped me shape my ideas and turn it into something impactful.</p>
-                    <p id="about-text" class="sm:leading-9 md:text-lg md:leading-8 font-semibold italic">And by the way, this entire webpage was designed and developed by me!</p>
-                </div>
+            
+            <!-- Asset Counter -->
+            <div id="assetCounter" class="text-white text-xs opacity-70">
+                <span id="currentAsset">0</span> / <span id="totalAssets">0</span> assets loaded
             </div>
         </div>
-    </section>
+        
+        <!-- Floating Particles -->
+        <div id="particles" class="absolute inset-0 pointer-events-none">
+            <div class="particle absolute w-2 h-2 bg-white bg-opacity-30 rounded-full"></div>
+            <div class="particle absolute w-1 h-1 bg-white bg-opacity-50 rounded-full"></div>
+            <div class="particle absolute w-3 h-3 bg-white bg-opacity-20 rounded-full"></div>
+            <div class="particle absolute w-1.5 h-1.5 bg-white bg-opacity-40 rounded-full"></div>
+            <div class="particle absolute w-2.5 h-2.5 bg-white bg-opacity-25 rounded-full"></div>
+        </div>
+    </div>
     
-    <section id="explore-section" class="relative bg-lightMode ">
-        <div class="grid h-svh place-content-center md:mx-20">
-            <h1 id="explore" class="sm:text-4xl sm:text-center md:text-left md:text-8xl font-medium z-10">Explore My Works <i id="explore-arrow" class="fa-solid fa-circle-arrow-down"></i></h1>
-        </div>
-    </section>
+    <div id="mainContent" class="opacity-0 invisible">
 
-    <!-- Projects Section -->
-    <section id="project-section" class="relative bg-lightMode">
-        <!-- Poster Designs -->
-        <div id="poster-design" class="grid gap-x-5 gap-y-16 pt-48 h-auto sm:grid-cols-1 sm:px-8 md:grid-cols-3 md:mx-20 md:grid-rows-2 md:px-0">
-            <div class="col-span-1">
-                <div class="grid grid-rows-2">
-                    <div class="row-span-1">
-                        <h3 id="poster-text" class="font-semibold text-4xl md:justify-self-end md:text-6xl">#####</h3>
-                    </div>
-                    <div  class="row-span-1 flex md:flex-row-reverse">
-                        <img id="poster-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="poster-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="poster-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                    </div>
-                </div>
-            </div>
-            <div class="card col-span-1">
-                <img src="assets/alex.jpg" alt="Alex Eala Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">Alex Eala Poster</p>
-            </div>
-            <div class="card col-span-1">
-                <img src="assets/arcane.jpg" alt="Arcane Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">Arcane Poster</p>
-            </div>
-            <div class="card col-span-1">
-                <img src="assets/carlos-sainz.jpg" alt="Carlos Sainz Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">Carlos Sainz Poster</p>
-            </div>
-            <div class="card col-span-1">
-                <img src="assets/okc.jpg" alt="2025 NBA Champions Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">2025 NBA Champions Poster</p>
-            </div>
-            <div class="card col-span-1">
-                <img src="assets/mikha.jpg" alt="BINI Mikha Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">BINI Mikha Poster</p>
-            </div>
-        </div>
-        <!-- End of Poster Design -->
-
-        <!-- Logo Designs -->
-        <div id="logo-design" class="grid gap-x-5 gap-y-16 mt-60 h-auto sm:grid-cols-1 sm:px-8 md:grid-cols-3 md:mx-20 md:px-0">
-            <div class="col-span-1">
-                <div class="grid-rows-2">
-                    <div class="row-span-1">
-                        <h3 id="logo-text" class=" font-semibold sm:text-4xl md:text-6xl md:justify-self-end"></h3>
-                    </div>
-                    <div class="row-span-1 flex md:flex-row-reverse">
-                        <img id="logo-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="logo-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="logo-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                    </div>
-                </div>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/malikhaying.jpg" alt="Malikhaying Unofficial Rebrand" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">Malikhaying Unofficial Rebranding</p>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/rv-creates.jpg" alt="RV Creates Official Logo" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">RV Creates Official Logo</p>
-            </div>
-        </div>
-        <!-- End of Logo Design -->
-
-
-        <!-- Merch Designs -->
-        <div id="merch-design" class="grid gap-x-5 gap-y-16 mt-60 h-auto sm:grid-cols-1 sm:px-8 md:mx-20 md:grid-cols-3 md:grid-rows-2">
-            <div class="col-span-1 ">
-                <div class="grid-rows-2">
-                    <div class="row-span-1">
-                        <h3 id="merch-text" class="font-semibold sm:text-4xl md:text-6xl md:justify-self-end">#####</h3>
-                    </div>
-                    <div class="row-span-1 flex md:flex-row-reverse">
-                        <img id="merch-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="merch-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="merch-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-span-1">
-                    <img src="assets/ics.png" alt="CNSC ICS Official Polo Shirt" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                    <p class="text-customGray mt-2">Camarines Norte State College - ICS Official Polo Shirt</p>
-            </div>
-            <div class="col-span-1">
-                    <img src="assets/organism.jpg" alt="CNSC Organism Official Polo Shirt" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                    <p class="text-customGray mt-2">Camarines Norte State College - Organism Official Polo Shirt</p>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/sole.jpg" alt="University of San Carlos Society of Language Enthusiasts Official Lanyard" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">University of San Carlos - Society of Language Enthusiasts Official Lanyard</p>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/pup-taguig.jpg" alt="PUP Taguig JPTIA Official Lanyard" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">PUP Taguig JPTIA Official Lanyard</p>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/socio-society.jpg" alt="CNSC Sociological Society Official Org Shirt" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">Camarines Norte State College - Sociological Society Official Org Shirt</p>
-            </div>
-        </div>
-        <!-- End of Merch Design -->
-
-        <!-- Motion Design -->
-        <div id="motion-design" class="grid gap-x-5 gap-y-16 mt-60 h-auto sm:grid-cols-1 sm:px-8 md:mx-20 md:grid-cols-3 md:grid-rows-2">
-            <div class="col-span-1">
-                <div class="grid-rows-2">
-                    <div class="row-span-1">
-                        <h3 id="motion-text" class="font-semibold sm:text-4xl md:text-6xl md:justify-self-end">#####</h3>
-                    </div>
-                    <div class="row-span-1 flex md:flex-row-reverse">
-                        <img id="motion-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="motion-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="motion-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                    </div>
-                </div>
-            </div>
-            <div class="col-span-1 justify-items-center">
-                <video src="assets/blink-twice.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg max-h-[425px]"></video>
-            </div>
-            <div class="col-span-1">
-                <video src="assets/jennie.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg"></video>
-            </div>
-            <div class="col-span-1">
-                <video src="assets/pasiklaban.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg"></video>
-            </div>
-            <div class="col-span-1">
-                <video src="assets/pageant.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg"></video>
-            </div>
-            <div class="col-span-1">
-                <video src="assets/pasuc.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg"></video>
-            </div>
-        </div>
-        <!-- End of Motion Design -->
-
-
-
-
-        <!-- Magazines/Newsletters -->
-        <div id="magazine" class="grid gap-x-5 gap-y-16 mt-60 h-auto sm:grid-cols-1 sm:px-8 md:grid-cols-3 md:mx-20">
-            <div class="col-span-1">
-                <div class="grid grid-rows-2">
-                    <div class="row-span-1">
-                        <h3 id="magazine-text" class="font-semibold sm:text-2xl md:text-5xl md:leading-10 md:justify-self-end md:text-right">#########</h3>
-                    </div>
-                    <div class="row-span-1 flex md:flex-row-reverse">
-                        <img id="magazine-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="magazine-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                        <img id="magazine-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
-                    </div>
-                </div>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/bagwis.jpg" alt="Bagwis Front Page" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">Bagwis Front Page</p>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/bagwis-2.jpg" alt="Bagwis News Page Snippet" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">Bagwis News Page Snippet</p>
-            </div>
-        </div>
-        <!-- End of Magazines/Newsletters -->
-
-
-        <!-- Social Media Graphics -->
-        <div id="socmed" class="grid gap-x-5 gap-y-5 mt-60 pb-48 h-auto sm:grid-cols-1 sm:px-8 md:mx-20 md:grid-cols-3 ">
-            <div class="md:col-span-3 md:flex md:items-center">
-                <h3 id="socmed-text" class="text-4xl md:text-6xl font-semibold">##########</h3>
-                <div class="flex md:flex-none">
-                    <img id="socmed-arrow" src="assets/down-right-arrow.png" alt="" class="h-16 justify-self-end">
-                    <img id="socmed-arrow" src="assets/down-right-arrow.png" alt="" class="h-16 justify-self-end">
-                    <img id="socmed-arrow" src="assets/down-right-arrow.png" alt="" class="h-16 justify-self-end">
-                </div>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/spark.jpg" alt="Spark Social Media Post" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">Spark Social Media Post</p>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/wallpaper.jpg" alt="RV Creates Free Wallpapers Instagram Post" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">RV Creates Free Wallpapers Instagram Post</p>
-            </div>
-            <div class="col-span-1">
-                <img src="assets/moodboard.jpg" alt="Moodboard Tutorial Instagram Post" class="rounded-[12px] drop-shadow-lg" loading="lazy">
-                <p class="text-customGray mt-2">Moodboard Tutorial Instagram Post</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section id="cta-section" class="relative">
-        <div id="cta-bg" class="absolute inset-0 bg-bg1 bg-cover bg-center -z-20"></div>
-            <div class="bg-darkMode/75 backdrop-opacity-75 -z-10"> 
-                <div id="bg-gradient" class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_#4891CE,_transparent_40%)] -z-10"></div>
-                    <div class="grid min-h-svh items-center sm:p-4 md:grid-cols-12">
-                        <div class="col-span-6 col-start-2 flex flex-col ">
-                            <h3 id="cta-header" class="text-3xl md:text-6xl font-semibold text-lightMode">Have a project in mind?</h3>
-                            <p id="cta-subtext" class="text-lightMode pt-4 font-light">Every project starts with a conversation.</p>
-                            <a id="cta-button" class="w-48 md:w-64 text-center bg-white text-darkMode font-semibold mt-8 px-8 py-6 rounded-[50px]" href="https://www.linktr.ee/rvcreates" target="_blank">Let's Talk</a>
-                            
-                            <div class="col-start-2 col-span-3 flex mt-4">
-                                <img src="assets/up-right-arrow.png" alt="" class="h-16">
-                                <img src="assets/up-right-arrow.png" alt="" class="h-16">
-                                <img src="assets/up-right-arrow.png" alt="" class="h-16">
+                <!-- Navigation Bar -->
+                <nav id="topnav" class=" bg-lightMode w-auto h-auto drop-shadow-xl z-50 sm:py-4 md:p-6">
+                    <div id="navElements" class="md:flex flex-row justify-between place-items-center">
+                        <div id="site-logo" class="text-center sm:pb-4 md:pb-0">
+                            <a href="#"><h6 class="font-semibold">Clarence Velasco</h6></a>
+                        </div>
+                        <div id="navButtons" class="md: flex flex-row space-x-12">
+                            <div>
+                                <a class="nav-btn relative inline-block px-2 py-1" id="aboutBtn" href="#">
+                                    <span class="label relative z-10 font-semibold">About</span> 
+                                    <span class="fill absolute inset-0 translate-y-full z-10"></span>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="nav-btn relative inline-block px-2 py-1" id="workBtn" href="#">
+                                    <span class="label relative z-10 font-semibold"> Work</span>
+                                    <span class="fill absolute inset-0 translate-y-full z-10"></span>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="nav-btn relative inline-block px-2 py-1" id="contactBtn" href="#">
+                                    <span class="label relative z-10 font-semibold">Let's Talk</span>
+                                    <span class="fill absolute inset-0 translate-y-full z-10"></span>
+                                </a>
                             </div>
                         </div>
                     </div>
+                </nav>
+
+                <section id="hero-section" class="relative h-max bg-darkMode">
                 
-            </div>
-    </section>
 
-    <!-- Footer -->
-    <section id="footer" class="relative overflow-hidden">
-        <div class="bg-darkMode pt-10">
-            <div class="grid sm:grid-cols-1 sm:p-6 md:grid-cols-4 md:min-h-96 md:mx-20">
-                <div class="col-span-1 flex justify-around sm:gap-4 md:gap-0">
-                    <!-- Facebook Icon -->
-                    <div>
-                        <a href="https://www.facebook.com/rvcreatesdesign" target="_blank">
-                            <svg class="fill-lightMode" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 24 24">
-                            <path d="M12,2C6.477,2,2,6.477,2,12c0,5.013,3.693,9.153,8.505,9.876V14.65H8.031v-2.629h2.474v-1.749 c0-2.896,1.411-4.167,3.818-4.167c1.153,0,1.762,0.085,2.051,0.124v2.294h-1.642c-1.022,0-1.379,0.969-1.379,2.061v1.437h2.995 l-0.406,2.629h-2.588v7.247C18.235,21.236,22,17.062,22,12C22,6.477,17.523,2,12,2z"></path>
-                            </svg>
-                        </a>
-                    </div>    
+                        <div id="bg-glow" class="absolute z-10 w-auto inset-0 bg-[radial-gradient(circle_at_50%_-20%,#2B32B2,transparent_60%)]"></div>
+                        <div id="bg-glow-2" class="absolute z-10 w-auto inset-0 bg-[radial-gradient(circle_at_50%_100%,#1488CC,transparent_50%)] opacity-0"></div>
+                        
+                        <!-- Hero Section -->
+                        <div class="relative z-10 h-svh top-40 sm:p-4 sm:mx-0 md:mx-20 md:p-6 place-items-center ">
+                            <h1 id="rence" class="font-extrabold text-lightMode text-3xl md:text-6xl">I'm Clarence Velasco</h1>
+                            <h1 id="subtitle" class="font-extrabold text-lightMode text-3xl mt-4 text-center md:text-6xl">A <span class="font-serif font-bold italic">Multimedia Artist</span> and a <span class="font-serif font-bold italic">Web Developer</span></h1>
 
-                    <!-- Instagram Icon -->
-                    <div>
-                        <a href="https://www.instagram.com/rvcreatesdesign" target="_blank">
-                            <svg class="fill-lightMode" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 24 24">
-                            <path d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z"></path>
-                            </svg>
-                        </a>
-                    </div>
+                            <div id="crafted-arrow" class="absolute grid bottom-[30%] place-items-center z-50">
+                                <p class="text-lightMode">Crafted with Code and Creativity</p>
+                                <button id="arrow-button" class="mt-3 text-lightMode"><i class="fa-solid fa-circle-arrow-down text-2xl"></i></button>
+                            </div>
+                        </div>  
+                </section>
 
-                    <!-- TikTok Icon -->
-                    <div>
-                        <a href="https://www.tiktok.com/@renceee_v?_t=ZS-8yhJQ3jSZb3&_r=1" target="_blank">
-                            <svg class="fill-lightMode" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
-                            <path d="M41,4H9C6.243,4,4,6.243,4,9v32c0,2.757,2.243,5,5,5h32c2.757,0,5-2.243,5-5V9C46,6.243,43.757,4,41,4z M37.006,22.323 c-0.227,0.021-0.457,0.035-0.69,0.035c-2.623,0-4.928-1.349-6.269-3.388c0,5.349,0,11.435,0,11.537c0,4.709-3.818,8.527-8.527,8.527 s-8.527-3.818-8.527-8.527s3.818-8.527,8.527-8.527c0.178,0,0.352,0.016,0.527,0.027v4.202c-0.175-0.021-0.347-0.053-0.527-0.053 c-2.404,0-4.352,1.948-4.352,4.352s1.948,4.352,4.352,4.352s4.527-1.894,4.527-4.298c0-0.095,0.042-19.594,0.042-19.594h4.016 c0.378,3.591,3.277,6.425,6.901,6.685V22.323z"></path>
-                            </svg>
-                        </a>
-                    </div>
+                <section id="about-section" class="relative bg-lightMode ">
+                    <!-- About Container -->
+                    <div class="grid sm:grid-cols-1 sm:mx-0 sm:px-4 sm:py-32  md:grid-cols-2 md:relative md:mx-20 md:p-12 md:h-svh ">
+                        <div id="image" class="relative grid place-content-center sm:py-32 md:col-span-1 ">
+                            <!-- Grad pic -->
+                            <img id="rencePic" src="assets/clarence.jpg" alt="Clarence Velasco" class="drop-shadow-lg rounded-[15px] sm:w-[250px] md:w-[438px]" loading="lazy">
+                            <!-- A BSIT Grad! -->
+                            <p id="info-1" class="absolute font-handwrite font-bold text-darkMode sm:rotate-[5deg] sm:text-l sm:bottom-[8%] sm:left-[67%] md:rotate-[-10deg] md:text-2xl md:bottom-[10%] md:left-[75%]">A BSIT Grad</p>
+                            <img id="arrow-1" src="assets/arrow.png" alt="" class="absolute sm:w-12 sm:bottom-[13%] sm:left-[78%] md:rotate-[-15deg] md:w-20 md:bottom-[15%] md:left-[78%] ">
 
-                    <!-- X Icon -->
-                    <div>
-                        <a href="https://www.x.com/rvcreates" target="_blank">
-                            <svg class="fill-lightMode" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
-                            <path d="M 6.9199219 6 L 21.136719 26.726562 L 6.2285156 44 L 9.40625 44 L 22.544922 28.777344 L 32.986328 44 L 43 44 L 28.123047 22.3125 L 42.203125 6 L 39.027344 6 L 26.716797 20.261719 L 16.933594 6 L 6.9199219 6 z"></path>
-                            </svg>
-                        </a> 
-                    </div>
-                </div>
+                            <!-- Spiderman -->
+                            <p id="info-2" class="absolute font-handwrite font-bold text-darkMode sm:rotate-[-6deg] sm:top-[13%] sm:left-[66%] md:text-xl md:rotate-[-15deg] md:top-[11%] md:left-[65%]">Fave Supe</p>
+                            <img id="spiderman" src="assets/spiderman.png" alt="" class="absolute sm:w-16 sm:rotate-[13deg] sm:top-[18%] sm:left-[70%] md:w-24 md:top-[15%] md:left-[68%] md:rotate-[15deg]">
 
-                <div class="sm:hidden md:block md:col-span-1 md:col-start-4">
-                    <div id="navButtons" class="flex flex-row justify-evenly">
-                        <div>
-                            <a class="text-lightMode" href=""><h6>About</h6></a>
+                            <!-- Fave Albums -->
+                            <p id="open-genre" class="absolute font-handwrite font-bold text-darkMode sm:text-sm sm:rotate-[-4deg] sm:bottom-[8%] sm:left-[10%] md:text-l md:rotate-[7deg] md:top-[43%] md:left-[2%]">An Open-Genre Person!</p>
+                            <img id="bini" src="assets/bini.jpg" alt="" class="absolute sm:z-30 rounded-[5px] sm:w-14 sm:rotate-[6deg] sm:bottom-[20%] sm:left-[35%] md:z-30 md:w-28 md:bottom-[15%] md:left-[24%]  md:rotate-[10deg] md:rounded-[10px]">
+                            <img id="aura" src="assets/aura.png" alt="" class="absolute sm:z-20 sm:rounded-[5px] sm:w-14 sm:rotate-[-6deg] sm:bottom-[18%] sm:left-[25%] md:z-20 md:w-28 md:bottom-[23%] md:left-[13%] md:rotate-[4deg] md:rounded-[10px]">
+                            <img id="xg" src="assets/xg.jpg" alt="" class="absolute sm:z-10 sm:rounded-[5px] sm:w-14 sm:rotate-[6deg] sm:bottom-[20%] sm:left-[16%] md:z-10 md:w-28 md:bottom-[33%] md:left-[16%] md:rotate-[-8deg] md:rounded-[10px]">
+                            <img id="ampm" src="assets/ampm.jpg" alt="" class="absolute sm:z-0 sm:rounded-[5px] sm:w-14 sm:rotate-[-6deg] sm:bottom-[23%] sm:left-[10%] md:w-28 md:bottom-[38%] md:left-[8%] md:rotate-[-4deg] md:rounded-[10px]">
                         </div>
-                        <div>
-                            <a class="text-lightMode" href=""><h6>Work</h6></a>
-                        </div>
-                        <div>
-                            <a class="text-lightMode" href=""><h6>Let's Talk</h6></a>
+
+                        <div class="relative grid content-center col-span-1 md:mx-0 ">
+                            <!-- Softwares -->
+                            <img id="software" src="assets/photoshop.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[20%] md:w-16 md:bottom-[25%] md:left-[35%]">
+                            <img id="software" src="assets/illustrator.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[35%] md:w-16 md:bottom-[25%] md:left-[45%]">
+                            <img id="software" src="assets/after-effects.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[50%] md:w-16 md:bottom-[25%] md:left-[55%]">
+                            <img id="software" src="assets/blender.png" alt="" class="absolute sm:w-12 sm:bottom-[-12%] sm:left-[65%] md:w-16 md:bottom-[25%] md:left-[65%]">
+                            <p id="software" class="absolute font-handwrite font-bold text-darkMode sm:text-base sm:bottom-[-18%] sm:left-[23%] md:text-lg md:bottom-[21%] md:left-[42%]">Softwares I mainly use!</p>
+
+                            <!-- About Me -->
+                            <div class="w-full max-w-full overflow-hidden">
+                                <h1 id="about-me" class="font-semibold py-4 sm:text-3xl md:text-4xl ">About Me</h1>
+                                <p id="about-text" class="sm:leading-9 md:text-lg md:leading-8">Since 2016, I have been immersed in the world of creativity. Starting with capturing and editing photos on my smartphone, I discovered a spark within me, and opportunities began to open one after another. My passion for tech and multimedia has built a strong foundation and brought me to where I am today. A mix of technical and creative skills—along with my love for pop culture, movies and video games—is what truly helped me shape my ideas and turn it into something impactful.</p>
+                                <p id="about-text" class="sm:leading-9 md:text-lg md:leading-8 font-semibold italic">And by the way, this entire webpage was designed and developed by me!</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-span-4 flex items-end sm:pb-4 sm:pt-4 md:pb-6 md:pt-0 md:col-span-1">
-                    <div>
-                        <p class="text-customGray sm:text-sm md:text-base">Copyright © 2025 Clarence Velasco. All Rights Reserved.</p>
+                </section>
+                
+                <section id="explore-section" class="relative bg-lightMode ">
+                    <div class="grid h-svh place-content-center md:mx-20">
+                        <h1 id="explore" class="sm:text-4xl sm:text-center md:text-left md:text-8xl font-medium z-10">Explore My Works <i id="explore-arrow" class="fa-solid fa-circle-arrow-down"></i></h1>
                     </div>
-                </div>
-            </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section id="project-section" class="relative bg-lightMode">
+                    <!-- Poster Designs -->
+                    <div id="poster-design" class="grid gap-x-5 gap-y-16 pt-48 h-auto sm:grid-cols-1 sm:px-8 md:grid-cols-3 md:mx-20 md:grid-rows-2 md:px-0">
+                        <div class="col-span-1">
+                            <div class="grid grid-rows-2">
+                                <div class="row-span-1">
+                                    <h3 id="poster-text" class="font-semibold text-4xl md:justify-self-end md:text-6xl">#####</h3>
+                                </div>
+                                <div  class="row-span-1 flex md:flex-row-reverse">
+                                    <img id="poster-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="poster-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="poster-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card col-span-1">
+                            <img src="assets/alex.jpg" alt="Alex Eala Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">Alex Eala Poster</p>
+                        </div>
+                        <div class="card col-span-1">
+                            <img src="assets/arcane.jpg" alt="Arcane Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">Arcane Poster</p>
+                        </div>
+                        <div class="card col-span-1">
+                            <img src="assets/carlos-sainz.jpg" alt="Carlos Sainz Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">Carlos Sainz Poster</p>
+                        </div>
+                        <div class="card col-span-1">
+                            <img src="assets/okc.jpg" alt="2025 NBA Champions Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">2025 NBA Champions Poster</p>
+                        </div>
+                        <div class="card col-span-1">
+                            <img src="assets/mikha.jpg" alt="BINI Mikha Poster" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">BINI Mikha Poster</p>
+                        </div>
+                    </div>
+                    <!-- End of Poster Design -->
+
+                    <!-- Logo Designs -->
+                    <div id="logo-design" class="grid gap-x-5 gap-y-16 mt-60 h-auto sm:grid-cols-1 sm:px-8 md:grid-cols-3 md:mx-20 md:px-0">
+                        <div class="col-span-1">
+                            <div class="grid-rows-2">
+                                <div class="row-span-1">
+                                    <h3 id="logo-text" class=" font-semibold sm:text-4xl md:text-6xl md:justify-self-end"></h3>
+                                </div>
+                                <div class="row-span-1 flex md:flex-row-reverse">
+                                    <img id="logo-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="logo-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="logo-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/malikhaying.jpg" alt="Malikhaying Unofficial Rebrand" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">Malikhaying Unofficial Rebranding</p>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/rv-creates.jpg" alt="RV Creates Official Logo" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">RV Creates Official Logo</p>
+                        </div>
+                    </div>
+                    <!-- End of Logo Design -->
+
+
+                    <!-- Merch Designs -->
+                    <div id="merch-design" class="grid gap-x-5 gap-y-16 mt-60 h-auto sm:grid-cols-1 sm:px-8 md:mx-20 md:grid-cols-3 md:grid-rows-2">
+                        <div class="col-span-1 ">
+                            <div class="grid-rows-2">
+                                <div class="row-span-1">
+                                    <h3 id="merch-text" class="font-semibold sm:text-4xl md:text-6xl md:justify-self-end">#####</h3>
+                                </div>
+                                <div class="row-span-1 flex md:flex-row-reverse">
+                                    <img id="merch-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="merch-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="merch-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-span-1">
+                                <img src="assets/ics.png" alt="CNSC ICS Official Polo Shirt" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                                <p class="text-customGray mt-2">Camarines Norte State College - ICS Official Polo Shirt</p>
+                        </div>
+                        <div class="col-span-1">
+                                <img src="assets/organism.jpg" alt="CNSC Organism Official Polo Shirt" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                                <p class="text-customGray mt-2">Camarines Norte State College - Organism Official Polo Shirt</p>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/sole.jpg" alt="University of San Carlos Society of Language Enthusiasts Official Lanyard" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">University of San Carlos - Society of Language Enthusiasts Official Lanyard</p>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/pup-taguig.jpg" alt="PUP Taguig JPTIA Official Lanyard" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">PUP Taguig JPTIA Official Lanyard</p>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/socio-society.jpg" alt="CNSC Sociological Society Official Org Shirt" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">Camarines Norte State College - Sociological Society Official Org Shirt</p>
+                        </div>
+                    </div>
+                    <!-- End of Merch Design -->
+
+                    <!-- Motion Design -->
+                    <div id="motion-design" class="grid gap-x-5 gap-y-16 mt-60 h-auto sm:grid-cols-1 sm:px-8 md:mx-20 md:grid-cols-3 md:grid-rows-2">
+                        <div class="col-span-1">
+                            <div class="grid-rows-2">
+                                <div class="row-span-1">
+                                    <h3 id="motion-text" class="font-semibold sm:text-4xl md:text-6xl md:justify-self-end">#####</h3>
+                                </div>
+                                <div class="row-span-1 flex md:flex-row-reverse">
+                                    <img id="motion-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="motion-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="motion-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1 justify-items-center">
+                            <video src="assets/blink-twice.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg max-h-[425px]"></video>
+                        </div>
+                        <div class="col-span-1">
+                            <video src="assets/jennie.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg"></video>
+                        </div>
+                        <div class="col-span-1">
+                            <video src="assets/pasiklaban.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg"></video>
+                        </div>
+                        <div class="col-span-1">
+                            <video src="assets/pageant.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg"></video>
+                        </div>
+                        <div class="col-span-1">
+                            <video src="assets/pasuc.mp4" autoplay loop muted playsinline class="rounded-[12px] drop-shadow-lg"></video>
+                        </div>
+                    </div>
+                    <!-- End of Motion Design -->
+
+
+
+
+                    <!-- Magazines/Newsletters -->
+                    <div id="magazine" class="grid gap-x-5 gap-y-16 mt-60 h-auto sm:grid-cols-1 sm:px-8 md:grid-cols-3 md:mx-20">
+                        <div class="col-span-1">
+                            <div class="grid grid-rows-2">
+                                <div class="row-span-1">
+                                    <h3 id="magazine-text" class="font-semibold sm:text-2xl md:text-5xl md:leading-10 md:justify-self-end md:text-right">#########</h3>
+                                </div>
+                                <div class="row-span-1 flex md:flex-row-reverse">
+                                    <img id="magazine-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="magazine-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                    <img id="magazine-arrow" src="assets/down-right-arrow.png" alt="" class="sm:h-12 md:h-16 justify-self-end">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/bagwis.jpg" alt="Bagwis Front Page" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">Bagwis Front Page</p>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/bagwis-2.jpg" alt="Bagwis News Page Snippet" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">Bagwis News Page Snippet</p>
+                        </div>
+                    </div>
+                    <!-- End of Magazines/Newsletters -->
+
+
+                    <!-- Social Media Graphics -->
+                    <div id="socmed" class="grid gap-x-5 gap-y-5 mt-60 pb-48 h-auto sm:grid-cols-1 sm:px-8 md:mx-20 md:grid-cols-3 ">
+                        <div class="md:col-span-3 md:flex md:items-center">
+                            <h3 id="socmed-text" class="text-4xl md:text-6xl font-semibold">##########</h3>
+                            <div class="flex md:flex-none">
+                                <img id="socmed-arrow" src="assets/down-right-arrow.png" alt="" class="h-16 justify-self-end">
+                                <img id="socmed-arrow" src="assets/down-right-arrow.png" alt="" class="h-16 justify-self-end">
+                                <img id="socmed-arrow" src="assets/down-right-arrow.png" alt="" class="h-16 justify-self-end">
+                            </div>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/spark.jpg" alt="Spark Social Media Post" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">Spark Social Media Post</p>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/wallpaper.jpg" alt="RV Creates Free Wallpapers Instagram Post" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">RV Creates Free Wallpapers Instagram Post</p>
+                        </div>
+                        <div class="col-span-1">
+                            <img src="assets/moodboard.jpg" alt="Moodboard Tutorial Instagram Post" class="rounded-[12px] drop-shadow-lg" loading="lazy">
+                            <p class="text-customGray mt-2">Moodboard Tutorial Instagram Post</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA -->
+                <section id="cta-section" class="relative">
+                    <div id="cta-bg" class="absolute inset-0 bg-bg1 bg-cover bg-center -z-20"></div>
+                        <div class="bg-darkMode/75 backdrop-opacity-75 -z-10"> 
+                            <div id="bg-gradient" class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_#4891CE,_transparent_40%)] -z-10"></div>
+                                <div class="grid min-h-svh items-center sm:p-4 md:grid-cols-12">
+                                    <div class="col-span-6 col-start-2 flex flex-col ">
+                                        <h3 id="cta-header" class="text-3xl md:text-6xl font-semibold text-lightMode">Have a project in mind?</h3>
+                                        <p id="cta-subtext" class="text-lightMode pt-4 font-light">Every project starts with a conversation.</p>
+                                        <a id="cta-button" class="w-48 md:w-64 text-center bg-white text-darkMode font-semibold mt-8 px-8 py-6 rounded-[50px]" href="https://www.linktr.ee/rvcreates" target="_blank">Let's Talk</a>
+                                        
+                                        <div class="col-start-2 col-span-3 flex mt-4">
+                                            <img src="assets/up-right-arrow.png" alt="" class="h-16">
+                                            <img src="assets/up-right-arrow.png" alt="" class="h-16">
+                                            <img src="assets/up-right-arrow.png" alt="" class="h-16">
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                </section>
+
+                <!-- Footer -->
+                <section id="footer" class="relative overflow-hidden">
+                    <div class="bg-darkMode pt-10">
+                        <div class="grid sm:grid-cols-1 sm:p-6 md:grid-cols-4 md:min-h-96 md:mx-20">
+                            <div class="col-span-1 flex justify-around sm:gap-4 md:gap-0">
+                                <!-- Facebook Icon -->
+                                <div>
+                                    <a href="https://www.facebook.com/rvcreatesdesign" target="_blank">
+                                        <svg class="fill-lightMode" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 24 24">
+                                        <path d="M12,2C6.477,2,2,6.477,2,12c0,5.013,3.693,9.153,8.505,9.876V14.65H8.031v-2.629h2.474v-1.749 c0-2.896,1.411-4.167,3.818-4.167c1.153,0,1.762,0.085,2.051,0.124v2.294h-1.642c-1.022,0-1.379,0.969-1.379,2.061v1.437h2.995 l-0.406,2.629h-2.588v7.247C18.235,21.236,22,17.062,22,12C22,6.477,17.523,2,12,2z"></path>
+                                        </svg>
+                                    </a>
+                                </div>    
+
+                                <!-- Instagram Icon -->
+                                <div>
+                                    <a href="https://www.instagram.com/rvcreatesdesign" target="_blank">
+                                        <svg class="fill-lightMode" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 24 24">
+                                        <path d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+
+                                <!-- TikTok Icon -->
+                                <div>
+                                    <a href="https://www.tiktok.com/@renceee_v?_t=ZS-8yhJQ3jSZb3&_r=1" target="_blank">
+                                        <svg class="fill-lightMode" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
+                                        <path d="M41,4H9C6.243,4,4,6.243,4,9v32c0,2.757,2.243,5,5,5h32c2.757,0,5-2.243,5-5V9C46,6.243,43.757,4,41,4z M37.006,22.323 c-0.227,0.021-0.457,0.035-0.69,0.035c-2.623,0-4.928-1.349-6.269-3.388c0,5.349,0,11.435,0,11.537c0,4.709-3.818,8.527-8.527,8.527 s-8.527-3.818-8.527-8.527s3.818-8.527,8.527-8.527c0.178,0,0.352,0.016,0.527,0.027v4.202c-0.175-0.021-0.347-0.053-0.527-0.053 c-2.404,0-4.352,1.948-4.352,4.352s1.948,4.352,4.352,4.352s4.527-1.894,4.527-4.298c0-0.095,0.042-19.594,0.042-19.594h4.016 c0.378,3.591,3.277,6.425,6.901,6.685V22.323z"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+
+                                <!-- X Icon -->
+                                <div>
+                                    <a href="https://www.x.com/rvcreates" target="_blank">
+                                        <svg class="fill-lightMode" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40" height="40" viewBox="0 0 50 50">
+                                        <path d="M 6.9199219 6 L 21.136719 26.726562 L 6.2285156 44 L 9.40625 44 L 22.544922 28.777344 L 32.986328 44 L 43 44 L 28.123047 22.3125 L 42.203125 6 L 39.027344 6 L 26.716797 20.261719 L 16.933594 6 L 6.9199219 6 z"></path>
+                                        </svg>
+                                    </a> 
+                                </div>
+                            </div>
+
+                            <div class="sm:hidden md:block md:col-span-1 md:col-start-4">
+                                <div id="navButtons" class="flex flex-row justify-evenly">
+                                    <div>
+                                        <a class="text-lightMode" href=""><h6>About</h6></a>
+                                    </div>
+                                    <div>
+                                        <a class="text-lightMode" href=""><h6>Work</h6></a>
+                                    </div>
+                                    <div>
+                                        <a class="text-lightMode" href=""><h6>Let's Talk</h6></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-span-4 flex items-end sm:pb-4 sm:pt-4 md:pb-6 md:pt-0 md:col-span-1">
+                                <div>
+                                    <p class="text-customGray sm:text-sm md:text-base">Copyright © 2025 Clarence Velasco. All Rights Reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <script  type="module" src="script.js"></script>
         </div>
-    </section>
-
-
-    <script  type="module" src="script.js"></script>
 </body>
 </html>
