@@ -255,7 +255,6 @@ class PortfolioPreloader {
                 })
                 // Slide preloader up and fade out
                 .to(this.elements.preloader, {
-                    y: "-100%",
                     opacity: 0,
                     duration: 0.8,
                     ease: "power2.inOut"
@@ -264,24 +263,39 @@ class PortfolioPreloader {
 
             showMainContent() {
                 // Show main content with staggered animation
-                gsap.set(this.elements.mainContent, { opacity: 1, visibility: 'visible' });
+                gsap.fromTo(this.elements.mainContent, 
+                  { opacity: 0, visibility: 'hidden' },
+                  { duration: 0.5, opacity: 1, visibility: 'visible' }
+                );
+
+                // gsap.set("#rence, #subtitle", {
+                //   opacity: 0,
+                //   y: 60,
+                // });
+
+                let split = new SplitText("#rence, #subtitle", {type: "chars"});
+    
                 
-                // const tl = gsap.timeline();
                 
+                const tl = gsap.timeline();
+                
+                tl.from(split.chars, 
+                  { opacity: 0, y: 60, duration: 0.7, ease: "power4", stagger: 0.04, }
+                );
                 // tl.fromTo(this.elements.mainContent.querySelector('h1'),
                 //     { y: 100, opacity: 0 },
                 //     { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
                 // )
-                // .fromTo(this.elements.mainContent.querySelector('p'),
-                //     { y: 50, opacity: 0 },
-                //     { y: 0, opacity: 0.8, duration: 0.8, ease: "power2.out" },
-                //     "-=0.5"
-                // )
-                // .fromTo(this.elements.mainContent.querySelector('button'),
-                //     { y: 30, opacity: 0, scale: 0.9 },
-                //     { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" },
-                //     "-=0.3"
-                // );
+                tl.fromTo(this.elements.mainContent.querySelector('p'),
+                    { y: 30, opacity: 0, scale: 0.9 },
+                    { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" },
+                    "-=0.3"
+                )
+                .fromTo(this.elements.mainContent.querySelector('button'),
+                    { y: 30, opacity: 0, scale: 0.9 },
+                    { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.7)" },
+                    "-=0.3"
+                );
 
                 // Add debugging
                   console.log('Main content should now be visible');
@@ -442,6 +456,8 @@ class PortfolioPreloader {
               scale: 0.5
             });
 
+
+
             // Fade in animation with stagger
             gsap.to(container, {
                 opacity: layerData.opacity, // Use the layer's target opacity
@@ -522,18 +538,16 @@ class PortfolioPreloader {
     }
     
     // Hero elements - no animations, just ensure visibility
-    function initHeroElements() {
-        // Make sure all elements are visible without animations
-        gsap.set(['#rence', '#subtitle', '#crafted-arrow', '#bg-glow'], { 
-            opacity: 1,
-            y: 0,
-            scale: 1
-        });
+    // function initHeroElements() {
+    //     // Make sure all elements are visible without animations
+    //     gsap.set(['#rence', '#subtitle', '#crafted-arrow', '#bg-glow'], { 
+    //         opacity: 1,
+    //         y: 0,
+    //         scale: 1
+    //     });
 
-        gsap.from('#bg-glow-2', {
-            opacity: 0,
-        });
-    }
+
+    // }
     
     // Arrow interactions
     function initArrowInteraction() {
@@ -605,20 +619,10 @@ function initGSAP() {
   }, (context) => {
     let { isDesktop, isMobile } = context.conditions;
 
-    // if (reduceMotion) return;
+
 
     // Animations for all Devices
     // Hero Animations
-    let split = new SplitText("#rence, #subtitle", {type: "chars"});
-    
-    gsap.from(split.chars, { 
-        opacity: 0,
-        y: 60, 
-        duration: 0.7,
-        ease: "power4",
-        stagger: 0.04,
-    });
-
     // CTA SplitText
     let ctasplit = new SplitText('#cta-header', {type: "chars"});
     let cta = gsap.timeline ({
@@ -658,13 +662,13 @@ function initGSAP() {
         opacity: 0,
     });
 
-    gsap.from('#crafted-arrow', { 
-      duration: 0.7, 
-      y: 80,
-      opacity: 0, 
-      stagger: 0.7,
-      ease: 'hop', 
-    });
+    // gsap.from('#crafted-arrow', { 
+    //   duration: 0.7, 
+    //   y: 80,
+    //   opacity: 0, 
+    //   stagger: 0.7,
+    //   ease: 'hop', 
+    // });
     
     // gsap.from('#topnav', { 
     //   duration: 0.7, 
@@ -870,7 +874,7 @@ function initGSAP() {
     // Desktop animations
     if (isDesktop) {
             initPosterGallery();
-            initHeroElements();
+            // initHeroElements();
             initArrowInteraction();
 
 
@@ -1121,7 +1125,7 @@ function initGSAP() {
             });
     } else if (isMobile) {
             // Simple animations for mobile (no poster gallery to avoid clutter)
-            initHeroElements();
+            // initHeroElements();
             initArrowInteraction();
     }
             
@@ -1246,7 +1250,7 @@ window.initGSAP = initGSAP;
             const mainContent = document.getElementById('mainContent');
             if (preloader && !preloader.classList.contains('hidden')) {
                 gsap.to(preloader, { opacity: 0, duration: 0.5 });
-                gsap.set(mainContent, { opacity: 1, visibility: 'visible' });
+                // gsap.set(mainContent, { duration: 0.5, opacity: 1, visibility: 'visible' });
             }
         }, 15000);
 
